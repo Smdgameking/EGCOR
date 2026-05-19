@@ -1,0 +1,23 @@
+{
+  "name": "egcor",
+  "version": "1.0.0",
+  "description": "East Godavari Collector Office Recruitment Website made by APT Students",
+  "keywords": [
+    "WebServer"
+  ],
+  "license": "ISC",
+  "author": "SMDHUssain, Naga Chaitanya, Yaswanth, Dileep, Ramesh, Ramya, Varshita, Bhavani",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "mongoose": "^9.6.2",
+    "svg-captcha": "^1.4.0"
+  }
+}
