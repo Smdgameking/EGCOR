@@ -9,7 +9,7 @@ router.use(session({
   saveUninitialized: true
 }));
 router.get('/auth', (req, res) => {
-  res.render('create-user');
+  res.render('Auth');
 });
 router.post('/register-user',(req, res, next) => {
   console.log(req.body);

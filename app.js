@@ -4,6 +4,7 @@ const connectDB = require('./mongodb/db');
 const User = require('./models/User');
 const authRout = require("./Routers/authRouter");
 const captchaRout = require("./Routers/capthcaRouter");
+const dashboardRout = require("./Routers/dashboardRouter");
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
@@ -12,7 +13,8 @@ require('dotenv').config();
 connectDB();
 
 app.use(authRout);
-app.use(captchaRout)
+app.use(captchaRout);
+app.use(dashboardRout);
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

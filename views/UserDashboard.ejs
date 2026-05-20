@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+User Dashboard
+</title>
+
+
+<style>
+
+/* RESET */
+
+*{
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+
+/* BODY */
+
+body{
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f1f5f9;
+
+    color: #0f172a;
+
+}
+
+
+
+/* NAVBAR */
+
+.navbar{
+
+    width: 100%;
+
+    background: white;
+
+    padding: 15px 40px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow:
+    0 2px 10px rgba(0,0,0,0.08);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+}
+
+
+.logo{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.logo-icon{
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 12px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #1e3a8a,
+        #2563eb
+    );
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    font-size: 24px;
+
+}
+
+
+.logo h2{
+
+    font-size: 22px;
+
+    color: #111827;
+
+}
+
+
+.nav-links{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+}
+
+
+.nav-links a{
+
+    text-decoration: none;
+
+    color: #334155;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+
+.nav-links a:hover{
+
+    color: #2563eb;
+
+}
+
+
+.profile{
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.profile img{
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+}
+
+
+.profile span{
+
+    font-weight: bold;
+
+}
+
+
+
+/* MAIN */
+
+.main{
+
+    padding: 30px;
+
+}
+
+
+
+/* HERO */
+
+.hero{
+
+    width: 100%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #1e3a8a,
+        #2563eb
+    );
+
+    border-radius: 24px;
+
+    padding: 35px;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+}
+
+
+.hero-text h1{
+
+    font-size: 40px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.hero-text p{
+
+    font-size: 17px;
+
+    color: #dbeafe;
+
+    line-height: 1.7;
+
+    max-width: 550px;
+
+}
+
+
+.hero-card{
+
+    background:
+    rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(10px);
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    min-width: 260px;
+
+}
+
+
+.hero-card h3{
+
+    margin-bottom: 10px;
+
+}
+
+
+.hero-card p{
+
+    color: #dbeafe;
+
+}
+
+
+
+/* STATS */
+
+.stats{
+
+    margin-top: 30px;
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 20px;
+
+}
+
+
+.stat-card{
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,0.06);
+
+    transition: 0.3s;
+
+}
+
+
+.stat-card:hover{
+
+    transform: translateY(-5px);
+
+}
+
+
+.stat-top{
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.stat-icon{
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 14px;
+
+    background: #dbeafe;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 24px;
+
+}
+
+
+.stat-card h2{
+
+    font-size: 34px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.stat-card p{
+
+    color: #64748b;
+
+}
+
+
+
+/* SECTION */
+
+.section-title{
+
+    margin-top: 40px;
+
+    margin-bottom: 20px;
+
+    font-size: 28px;
+
+}
+
+
+
+/* QUICK ACTIONS */
+
+.quick-actions{
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 20px;
+
+}
+
+
+.action-card{
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,0.06);
+
+    transition: 0.3s;
+
+    cursor: pointer;
+
+}
+
+
+.action-card:hover{
+
+    transform: translateY(-5px);
+
+}
+
+
+.action-icon{
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 28px;
+
+    color: white;
+
+    margin-bottom: 18px;
+
+}
+
+
+.action-card h3{
+
+    margin-bottom: 10px;
+
+}
+
+
+.action-card p{
+
+    color: #64748b;
+
+    line-height: 1.6;
+
+}
+
+
+
+/* JOBS */
+
+.jobs{
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit, minmax(320px, 1fr));
+
+    gap: 20px;
+
+}
+
+
+.job-card{
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,0.06);
+
+    transition: 0.3s;
+
+}
+
+
+.job-card:hover{
+
+    transform: translateY(-5px);
+
+}
+
+
+.job-top{
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+}
+
+
+.job-badge{
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+.job-card p{
+
+    color: #64748b;
+
+    line-height: 1.7;
+
+}
+
+
+.job-details{
+
+    margin-top: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.job-details span{
+
+    color: #334155;
+
+    font-size: 14px;
+
+}
+
+
+.apply-btn{
+
+    width: 100%;
+
+    margin-top: 22px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.apply-btn:hover{
+
+    transform: translateY(-2px);
+
+}
+
+
+
+/* RESPONSIVE */
+
+@media(max-width: 950px){
+
+    .navbar{
+
+        padding: 15px 20px;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+
+    }
+
+
+    .hero{
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+}
+
+
+@media(max-width: 700px){
+
+    .nav-links{
+
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .hero-text h1{
+
+        font-size: 30px;
+
+    }
+
+
+    .main{
+
+        padding: 18px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<!-- NAVBAR -->
+
+
+<nav class="navbar">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🏛️
+        </div>
+
+        <h2>
+            Collector Portal
+        </h2>
+
+    </div>
+
+
+
+    <div class="nav-links">
+
+        <a href="/user/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/user/jobs">
+            Jobs
+        </a>
+
+        <a href="/user/applications">
+            Applications
+        </a>
+
+        <a href="/user/hallticket">
+            Hall Ticket
+        </a>
+
+        <a href="/user/results">
+            Results
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+
+
+    <div class="profile">
+
+        <img
+        src="<%= user.profileImage || 'https://i.pravatar.cc/100' %>"
+        >
+
+        <span>
+
+            <%= user.fullname.firstname %>
+
+        </span>
+
+    </div>
+
+
+</nav>
+
+
+
+
+
+<!-- MAIN -->
+
+
+<div class="main">
+
+
+
+    <!-- HERO -->
+
+
+    <section class="hero">
+
+
+        <div class="hero-text">
+
+            <h1>
+
+                Welcome Back,
+                <%= user.fullname.firstname %> 👋
+
+            </h1>
+
+            <p>
+
+                Track your applications,
+                download hall tickets,
+                check results and apply
+                for the latest recruitment opportunities.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="hero-card">
+
+            <h3>
+
+                <%= latestNotification.title %>
+
+            </h3>
+
+            <p>
+
+                <%= latestNotification.message %>
+
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+    <!-- STATS -->
+
+
+    <div class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div>
+
+                    <h2>
+
+                        <%= totalApplications %>
+
+                    </h2>
+
+                    <p>
+                        Applications
+                    </p>
+
+                </div>
+
+                <div class="stat-icon">
+                    📄
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div>
+
+                    <h2>
+
+                        <%= totalHallTickets %>
+
+                    </h2>
+
+                    <p>
+                        Hall Tickets
+                    </p>
+
+                </div>
+
+                <div class="stat-icon">
+                    🎫
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div>
+
+                    <h2>
+
+                        <%= totalResults %>
+
+                    </h2>
+
+                    <p>
+                        Results Published
+                    </p>
+
+                </div>
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-top">
+
+                <div>
+
+                    <h2>
+
+                        <%= totalNotifications %>
+
+                    </h2>
+
+                    <p>
+                        Notifications
+                    </p>
+
+                </div>
+
+                <div class="stat-icon">
+                    🔔
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- QUICK ACTIONS -->
+
+
+    <h2 class="section-title">
+
+        Quick Actions
+
+    </h2>
+
+
+    <div class="quick-actions">
+
+
+        <a
+        href="/user/jobs"
+        style="text-decoration:none;color:inherit;"
+        >
+
+            <div class="action-card">
+
+                <div class="action-icon">
+                    📄
+                </div>
+
+                <h3>
+                    Apply For Jobs
+                </h3>
+
+                <p>
+
+                    Explore latest government
+                    recruitment opportunities.
+
+                </p>
+
+            </div>
+
+        </a>
+
+
+
+
+
+        <a
+        href="/user/hallticket"
+        style="text-decoration:none;color:inherit;"
+        >
+
+            <div class="action-card">
+
+                <div class="action-icon">
+                    🎫
+                </div>
+
+                <h3>
+                    Download Hall Ticket
+                </h3>
+
+                <p>
+
+                    Access and download
+                    your hall ticket instantly.
+
+                </p>
+
+            </div>
+
+        </a>
+
+
+
+
+
+        <a
+        href="/user/results"
+        style="text-decoration:none;color:inherit;"
+        >
+
+            <div class="action-card">
+
+                <div class="action-icon">
+                    📊
+                </div>
+
+                <h3>
+                    View Results
+                </h3>
+
+                <p>
+
+                    Check your latest
+                    examination results online.
+
+                </p>
+
+            </div>
+
+        </a>
+
+
+
+
+
+        <a
+        href="/user/profile"
+        style="text-decoration:none;color:inherit;"
+        >
+
+            <div class="action-card">
+
+                <div class="action-icon">
+                    👤
+                </div>
+
+                <h3>
+                    Manage Profile
+                </h3>
+
+                <p>
+
+                    Update your profile
+                    and account details.
+
+                </p>
+
+            </div>
+
+        </a>
+
+
+    </div>
+
+
+
+
+
+    <!-- JOBS -->
+
+
+    <h2 class="section-title">
+
+        Latest Recruitment Jobs
+
+    </h2>
+
+
+    <div class="jobs">
+
+
+        <% jobs.forEach(job => { %>
+
+        <div class="job-card">
+
+
+            <div class="job-top">
+
+                <h3>
+
+                    <%= job.title %>
+
+                </h3>
+
+
+                <div class="job-badge">
+
+                    <%= job.status %>
+
+                </div>
+
+            </div>
+
+
+            <p>
+
+                <%= job.description %>
+
+            </p>
+
+
+            <div class="job-details">
+
+                <span>
+
+                    🎓 Qualification:
+                    <%= job.qualification %>
+
+                </span>
+
+
+                <span>
+
+                    📅 Last Date:
+                    <%= job.lastDate %>
+
+                </span>
+
+
+                <span>
+
+                    📍 Location:
+                    <%= job.location %>
+
+                </span>
+
+            </div>
+
+
+            <form
+            action="/user/apply/<%= job._id %>"
+            method="POST"
+            >
+
+                <button class="apply-btn">
+
+                    Apply Now
+
+                </button>
+
+            </form>
+
+
+        </div>
+
+        <% }) %>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
