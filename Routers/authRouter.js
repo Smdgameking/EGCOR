@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-const User = require('./models/User');
+const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 router.use(session({
@@ -11,7 +11,10 @@ router.use(session({
 router.get('/auth', (req, res) => {
   res.render('create-user');
 });
-router.post('/register-user', async (req, res) => {
+router.post('/register-user',(req, res, next) => {
+  console.log(req.body);
+  next();
+}, async (req, res) => {
   if (req.body.captcha !== req.session.captcha) {
     return res.send("wrong captcha");
   }
@@ -29,7 +32,8 @@ router.post('/register-user', async (req, res) => {
     gender: req.body.gender,
     qualification: req.body.qualification,
     password: hashedPassword,
-    confirmpassword: hashedConfirmPassword
+    confirmpassword: hashedConfirmPassword,
+    role: 'user'
   });
   await user.save();
   res.send("User registered successfully");
@@ -39,6 +43,15 @@ router.post('/login', async (req, res) => {
   if (captcha !== req.session.captcha) {
     return res.send("wrong captcha");
   }
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    return res.send("Invalid email or password");
+  }
+  const validPassword = await bcrypt.compare(password, user.password);
+  if (!validPassword) {
+    return res.send("Invalid email or password");
+  }
+  res.send("Login successful");
 });
 
 module.exports = router

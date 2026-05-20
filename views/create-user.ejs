@@ -13,42 +13,51 @@ content="width=device-width, initial-scale=1.0">
 Collector Recruitment Portal
 </title>
 
-
 <style>
 
 /* RESET */
 
 *{
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
+
+
+/* BODY */
 
 body{
 
-    height: 100vh;
-
-    overflow: hidden;
+    min-height: 100vh;
 
     font-family: Arial, Helvetica, sans-serif;
 
-    background: #e2e8f0;
+    background:
+    linear-gradient(
+        135deg,
+        #dbeafe,
+        #e2e8f0
+    );
 
 }
 
 
-/* MAIN CONTAINER */
+
+/* CONTAINER */
 
 .container{
 
     width: 100%;
 
-    height: 100vh;
+    min-height: 100vh;
 
     display: flex;
 
 }
+
 
 
 /* LEFT PANEL */
@@ -74,41 +83,42 @@ body{
 
     align-items: center;
 
-    padding: 40px;
-
     text-align: center;
+
+    padding: 40px;
 
 }
 
 
 .logo{
 
-    width: 100px;
-
-    height: 100px;
+    width: 110px;
+    height: 110px;
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,0.1);
+    background:
+    rgba(255,255,255,0.1);
 
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     font-size: 50px;
 
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+
+    backdrop-filter: blur(10px);
 
 }
 
 
 .left-panel h1{
 
-    font-size: 42px;
+    font-size: 46px;
 
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 
     line-height: 1.2;
 
@@ -117,30 +127,30 @@ body{
 
 .left-panel p{
 
-    font-size: 17px;
-
-    line-height: 1.7;
-
     color: #cbd5e1;
 
-    max-width: 450px;
+    line-height: 1.8;
+
+    max-width: 500px;
+
+    font-size: 17px;
 
 }
 
 
 .portal-tag{
 
-    margin-top: 25px;
+    margin-top: 30px;
 
     padding: 12px 22px;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
-    background: rgba(255,255,255,0.1);
-
-    font-size: 16px;
+    background:
+    rgba(255,255,255,0.1);
 
 }
+
 
 
 /* RIGHT PANEL */
@@ -152,12 +162,12 @@ body{
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     padding: 20px;
 
 }
+
 
 
 /* AUTH BOX */
@@ -166,18 +176,19 @@ body{
 
     width: 100%;
 
-    max-width: 500px;
+    max-width: 560px;
 
     background: white;
 
-    padding: 25px;
+    padding: 30px;
 
-    border-radius: 18px;
+    border-radius: 22px;
 
     box-shadow:
-    0 10px 30px rgba(0,0,0,0.1);
+    0 10px 40px rgba(0,0,0,0.12);
 
 }
+
 
 
 /* TABS */
@@ -188,7 +199,7 @@ body{
 
     border: 1px solid #ddd;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     overflow: hidden;
 
@@ -201,7 +212,7 @@ body{
 
     flex: 1;
 
-    padding: 12px;
+    padding: 14px;
 
     border: none;
 
@@ -225,7 +236,32 @@ body{
 }
 
 
-/* FORMS */
+
+/* ERROR BOX */
+
+#errorBox{
+
+    display: none;
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    margin-bottom: 18px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+}
+
+
+
+/* FORM */
 
 form{
 
@@ -233,9 +269,36 @@ form{
 
     flex-direction: column;
 
+    gap: 14px;
+
+}
+
+
+#registerForm{
+
+    display: none;
+
+}
+
+
+
+/* DOUBLE INPUT */
+
+.double-input{
+
+    display: flex;
+
     gap: 12px;
 
 }
+
+
+.double-input .input-group{
+
+    flex: 1;
+
+}
+
 
 
 /* INPUT GROUP */
@@ -257,27 +320,30 @@ form{
 
     font-weight: bold;
 
-    color: #222;
+    color: #111827;
 
 }
 
 
+
+/* INPUT */
+
 .input-group input,
 .input-group select{
 
-    padding: 10px;
+    width: 100%;
+
+    padding: 12px;
 
     border: 1px solid #ccc;
 
-    border-radius: 8px;
-
-    font-size: 14px;
+    border-radius: 10px;
 
     outline: none;
 
-    transition: 0.3s;
+    font-size: 14px;
 
-    width: 100%;
+    transition: 0.3s;
 
 }
 
@@ -288,27 +354,126 @@ form{
     border-color: #2563eb;
 
     box-shadow:
-    0 0 5px rgba(37,99,235,0.3);
+    0 0 10px rgba(37,99,235,0.2);
 
 }
 
 
-/* DOUBLE INPUT */
+.input-group input:hover,
+.input-group select:hover{
 
-.double-input{
-
-    display: flex;
-
-    gap: 12px;
+    border-color: #2563eb;
 
 }
 
 
-.double-input .input-group{
 
-    flex: 1;
+/* VALIDATION */
+
+.valid-input{
+
+    border-color: #22c55e !important;
+
+    box-shadow:
+    0 0 8px rgba(34,197,94,0.3);
 
 }
+
+
+.invalid-input{
+
+    border-color: #ef4444 !important;
+
+    box-shadow:
+    0 0 8px rgba(239,68,68,0.3);
+
+}
+
+
+
+/* PASSWORD */
+
+.password-wrapper{
+
+    position: relative;
+
+}
+
+
+.password-toggle{
+
+    position: absolute;
+
+    top: 50%;
+    right: 12px;
+
+    transform: translateY(-50%);
+
+    cursor: pointer;
+
+    user-select: none;
+
+}
+
+
+
+/* PASSWORD STRENGTH */
+
+.password-strength{
+
+    margin-top: 5px;
+
+}
+
+
+.strength-bar{
+
+    width: 100%;
+
+    height: 8px;
+
+    background: #ddd;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+#strengthFill{
+
+    width: 0%;
+
+    height: 100%;
+
+    transition: 0.4s;
+
+}
+
+
+#strengthText{
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 12px;
+
+}
+
+
+
+/* ERROR MESSAGE */
+
+.error-message{
+
+    color: #dc2626;
+
+    font-size: 12px;
+
+}
+
 
 
 /* CAPTCHA */
@@ -318,7 +483,6 @@ form{
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     gap: 10px;
@@ -331,7 +495,7 @@ form{
 
     height: 55px;
 
-    border-radius: 8px;
+    border-radius: 10px;
 
 }
 
@@ -358,15 +522,16 @@ form{
 }
 
 
+
 /* BUTTON */
 
 .submit-btn{
 
-    padding: 12px;
+    padding: 13px;
 
     border: none;
 
-    border-radius: 8px;
+    border-radius: 10px;
 
     background: #111827;
 
@@ -378,8 +543,6 @@ form{
 
     transition: 0.3s;
 
-    margin-top: 5px;
-
 }
 
 
@@ -387,33 +550,28 @@ form{
 
     background: #1e293b;
 
-}
-
-
-/* REGISTER HIDE */
-
-#registerForm{
-
-    display: none;
+    transform: translateY(-2px);
 
 }
+
+
+.submit-btn.loading{
+
+    opacity: 0.7;
+
+    pointer-events: none;
+
+}
+
 
 
 /* RESPONSIVE */
 
 @media(max-width: 950px){
 
-    body{
-
-        overflow: auto;
-
-    }
-
     .container{
 
         flex-direction: column;
-
-        height: auto;
 
     }
 
@@ -421,17 +579,13 @@ form{
 
         width: 100%;
 
-        min-height: 300px;
-
-        padding: 30px;
+        min-height: 320px;
 
     }
 
     .right-panel{
 
         width: 100%;
-
-        padding: 20px;
 
     }
 
@@ -448,19 +602,7 @@ form{
 
     .left-panel h1{
 
-        font-size: 32px;
-
-    }
-
-    .left-panel p{
-
-        font-size: 15px;
-
-    }
-
-    .auth-box{
-
-        padding: 20px;
+        font-size: 34px;
 
     }
 
@@ -477,7 +619,9 @@ form{
 <div class="container">
 
 
+
     <!-- LEFT PANEL -->
+
 
 
     <div class="left-panel">
@@ -497,7 +641,7 @@ form{
 
             Official government recruitment portal
             for applications, hall tickets,
-            examination results and recruitment management.
+            results and recruitment management.
 
         </p>
 
@@ -514,6 +658,7 @@ form{
 
 
     <!-- RIGHT PANEL -->
+
 
 
     <div class="right-panel">
@@ -548,6 +693,13 @@ form{
 
 
 
+            <!-- ERROR BOX -->
+
+
+            <div id="errorBox"></div>
+
+
+
 
 
             <!-- LOGIN FORM -->
@@ -577,12 +729,24 @@ form{
 
                     <label>Password</label>
 
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Enter Password"
-                        required
-                    >
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            name="password"
+                            placeholder="Enter Password"
+                            required
+                        >
+
+                        <span
+                            class="password-toggle"
+                            onclick="togglePassword('loginPassword')"
+                        >
+                            👁️
+                        </span>
+
+                    </div>
 
                 </div>
 
@@ -686,6 +850,7 @@ form{
 
                         <input
                             type="email"
+                            id="emailInput"
                             name="email"
                             placeholder="Enter Email"
                             required
@@ -700,6 +865,7 @@ form{
 
                         <input
                             type="tel"
+                            id="phoneInput"
                             name="phone"
                             placeholder="Phone Number"
                             required
@@ -734,17 +900,11 @@ form{
 
                         <select name="gender">
 
-                            <option>
-                                Male
-                            </option>
+                            <option>Male</option>
 
-                            <option>
-                                Female
-                            </option>
+                            <option>Female</option>
 
-                            <option>
-                                Other
-                            </option>
+                            <option>Other</option>
 
                         </select>
 
@@ -764,25 +924,15 @@ form{
 
                         <select name="qualification">
 
-                            <option>
-                                10th Pass
-                            </option>
+                            <option>10th Pass</option>
 
-                            <option>
-                                12th Pass
-                            </option>
+                            <option>12th Pass</option>
 
-                            <option>
-                                Diploma
-                            </option>
+                            <option>Diploma</option>
 
-                            <option>
-                                Degree
-                            </option>
+                            <option>Degree</option>
 
-                            <option>
-                                B.Tech
-                            </option>
+                            <option>B.Tech</option>
 
                         </select>
 
@@ -793,12 +943,41 @@ form{
 
                         <label>Password</label>
 
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            required
-                        >
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                name="password"
+                                placeholder="Password"
+                                required
+                            >
+
+                            <span
+                                class="password-toggle"
+                                onclick="togglePassword('registerPassword')"
+                            >
+                                👁️
+                            </span>
+
+                        </div>
+
+
+                        <div class="password-strength">
+
+                            <div class="strength-bar">
+
+                                <div id="strengthFill"></div>
+
+                            </div>
+
+                            <small id="strengthText">
+
+                                Password Strength
+
+                            </small>
+
+                        </div>
 
                     </div>
 
@@ -814,12 +993,29 @@ form{
 
                         <label>Confirm Password</label>
 
-                        <input
-                            type="password"
-                            name="confirmpassword"
-                            placeholder="Confirm Password"
-                            required
-                        >
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmpassword"
+                                placeholder="Confirm Password"
+                                required
+                            >
+
+                            <span
+                                class="password-toggle"
+                                onclick="togglePassword('confirmPassword')"
+                            >
+                                👁️
+                            </span>
+
+                        </div>
+
+                        <small
+                            id="passwordError"
+                            class="error-message"
+                        ></small>
 
                     </div>
 
@@ -867,6 +1063,7 @@ form{
                 <button
                     type="submit"
                     class="submit-btn"
+                    id="registerButton"
                 >
                     Register
                 </button>
@@ -886,77 +1083,419 @@ form{
 
 
 
+
 <script>
 
-function showRegister(){
 
-    document.getElementById(
-        "loginForm"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "registerForm"
-    ).style.display = "flex";
-
-
-    document.getElementById(
-        "registerTab"
-    ).classList.add("active");
-
-
-    document.getElementById(
-        "loginTab"
-    ).classList.remove("active");
-
-}
-
-
+/* LOGIN TAB */
 
 function showLogin(){
 
-    document.getElementById(
-        "registerForm"
-    ).style.display = "none";
+    loginForm.style.display =
+    "flex";
 
+    registerForm.style.display =
+    "none";
 
-    document.getElementById(
-        "loginForm"
-    ).style.display = "flex";
+    loginTab.classList.add(
+        "active"
+    );
 
-
-    document.getElementById(
-        "loginTab"
-    ).classList.add("active");
-
-
-    document.getElementById(
-        "registerTab"
-    ).classList.remove("active");
+    registerTab.classList.remove(
+        "active"
+    );
 
 }
 
 
+
+/* REGISTER TAB */
+
+function showRegister(){
+
+    loginForm.style.display =
+    "none";
+
+    registerForm.style.display =
+    "flex";
+
+    registerTab.classList.add(
+        "active"
+    );
+
+    loginTab.classList.remove(
+        "active"
+    );
+
+}
+
+
+
+/* CAPTCHA REFRESH */
 
 function refreshCaptcha(){
 
-    document.getElementById(
-        "captcha"
-    ).src =
+    captcha.src =
     "/captcha?" + Date.now();
 
 }
-
 
 
 function refreshCaptcha2(){
 
-    document.getElementById(
-        "captcha2"
-    ).src =
+    captcha2.src =
     "/captcha?" + Date.now();
 
 }
+
+
+
+/* PASSWORD TOGGLE */
+
+function togglePassword(id){
+
+    const input =
+    document.getElementById(id);
+
+    input.type =
+    input.type === "password"
+    ? "text"
+    : "password";
+
+}
+
+
+
+/* PASSWORD STRENGTH */
+
+const passwordInput =
+document.getElementById(
+    "registerPassword"
+);
+
+
+passwordInput.addEventListener(
+
+    "input",
+
+    function(){
+
+        const password =
+        this.value;
+
+        let strength = 0;
+
+
+        if(password.length >= 8){
+
+            strength++;
+
+        }
+
+
+        if(/[A-Z]/.test(password)){
+
+            strength++;
+
+        }
+
+
+        if(/[0-9]/.test(password)){
+
+            strength++;
+
+        }
+
+
+        if(/[^A-Za-z0-9]/.test(password)){
+
+            strength++;
+
+        }
+
+
+        const fill =
+        document.getElementById(
+            "strengthFill"
+        );
+
+
+        const text =
+        document.getElementById(
+            "strengthText"
+        );
+
+
+        if(strength === 1){
+
+            fill.style.width = "25%";
+
+            fill.style.background =
+            "#ef4444";
+
+            text.innerText =
+            "Weak Password";
+
+        }
+
+
+        else if(strength === 2){
+
+            fill.style.width = "50%";
+
+            fill.style.background =
+            "#f59e0b";
+
+            text.innerText =
+            "Medium Password";
+
+        }
+
+
+        else if(strength === 3){
+
+            fill.style.width = "75%";
+
+            fill.style.background =
+            "#3b82f6";
+
+            text.innerText =
+            "Strong Password";
+
+        }
+
+
+        else if(strength === 4){
+
+            fill.style.width = "100%";
+
+            fill.style.background =
+            "#22c55e";
+
+            text.innerText =
+            "Very Strong Password";
+
+        }
+
+
+        else{
+
+            fill.style.width = "0%";
+
+            text.innerText =
+            "Password Strength";
+
+        }
+
+});
+
+
+
+/* CONFIRM PASSWORD */
+
+const confirmPassword =
+document.getElementById(
+    "confirmPassword"
+);
+
+
+confirmPassword.addEventListener(
+
+    "input",
+
+    function(){
+
+        const password =
+        passwordInput.value;
+
+
+        const confirm =
+        this.value;
+
+
+        const error =
+        document.getElementById(
+            "passwordError"
+        );
+
+
+        if(confirm === ""){
+
+            error.innerText = "";
+
+            this.classList.remove(
+                "valid-input",
+                "invalid-input"
+            );
+
+            return;
+
+        }
+
+
+        if(password === confirm){
+
+            this.classList.add(
+                "valid-input"
+            );
+
+            this.classList.remove(
+                "invalid-input"
+            );
+
+            error.style.color =
+            "#22c55e";
+
+            error.innerText =
+            "Passwords Match";
+
+        }
+
+        else{
+
+            this.classList.add(
+                "invalid-input"
+            );
+
+            this.classList.remove(
+                "valid-input"
+            );
+
+            error.style.color =
+            "#ef4444";
+
+            error.innerText =
+            "Passwords Do Not Match";
+
+        }
+
+});
+
+
+
+/* EMAIL VALIDATION */
+
+const emailInput =
+document.getElementById(
+    "emailInput"
+);
+
+
+emailInput.addEventListener(
+
+    "input",
+
+    function(){
+
+        if(
+            this.value.includes("@")
+            &&
+            this.value.includes(".")
+        ){
+
+            this.classList.add(
+                "valid-input"
+            );
+
+            this.classList.remove(
+                "invalid-input"
+            );
+
+        }
+
+        else{
+
+            this.classList.add(
+                "invalid-input"
+            );
+
+            this.classList.remove(
+                "valid-input"
+            );
+
+        }
+
+});
+
+
+
+/* PHONE VALIDATION */
+
+const phoneInput =
+document.getElementById(
+    "phoneInput"
+);
+
+
+phoneInput.addEventListener(
+
+    "input",
+
+    function(){
+
+        if(this.value.length >= 10){
+
+            this.classList.add(
+                "valid-input"
+            );
+
+            this.classList.remove(
+                "invalid-input"
+            );
+
+        }
+
+        else{
+
+            this.classList.add(
+                "invalid-input"
+            );
+
+            this.classList.remove(
+                "valid-input"
+            );
+
+        }
+
+});
+
+
+
+/* FORM VALIDATION */
+
+registerForm.addEventListener(
+
+    "submit",
+
+    function(e){
+
+        if(
+            passwordInput.value
+            !==
+            confirmPassword.value
+        ){
+
+            e.preventDefault();
+
+            document.getElementById(
+                "passwordError"
+            ).innerText =
+            "Passwords Do Not Match";
+
+            return;
+
+        }
+
+
+        registerButton.classList.add(
+            "loading"
+        );
+
+
+        registerButton.innerText =
+        "Registering...";
+
+});
 
 </script>
 

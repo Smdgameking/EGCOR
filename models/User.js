@@ -22,7 +22,6 @@ const userSchema = new mongoose.Schema({
     phone:{
         type: Number,
         required: true,
-        unique: true,
     },
     dob: {
         type: Date,
@@ -36,7 +35,7 @@ const userSchema = new mongoose.Schema({
     qualification: {
         type: String,
         required: true,
-        enum: ['10th pass', '12th pass', 'Diploma','Degree', 'B.Tech']
+        enum: ['10th Pass', '12th Pass', 'Diploma','Degree', 'B.Tech']
     },
     password: {
         type: String,
@@ -49,6 +48,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 6,
         maxlength: 1024
+    },
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
     }
 });
 
