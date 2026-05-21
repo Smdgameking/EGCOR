@@ -19,6 +19,8 @@
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "mongoose": "^9.6.2",
+    "multer": "^2.1.1",
+    "path": "^0.12.7",
     "svg-captcha": "^1.4.0"
   }
 }
