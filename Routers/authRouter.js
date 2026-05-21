@@ -36,7 +36,7 @@ router.post('/register-user',(req, res, next) => {
     role: 'user'
   });
   await user.save();
-  res.send("User registered successfully");
+  res.render("Upload");
 });
 router.post('/login', async (req, res) => {
   const { username, email, password, captcha } = req.body;
@@ -51,7 +51,13 @@ router.post('/login', async (req, res) => {
   if (!validPassword) {
     return res.send("Invalid email or password");
   }
-  res.send("Login successful");
+
+  req.session.user = {
+    id: user._id,
+    username: user.fullname.firstname + " " + user.fullname.lastname,
+    role: user.role
+  };
+  res.render("Upload");
 });
 
 module.exports = router

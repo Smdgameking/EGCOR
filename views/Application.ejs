@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+AP Collector Office Recruitment Portal
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href=
+"https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:
+    linear-gradient(135deg,
+    #dbeafe,
+    #eff6ff,
+    #f8fafc);
+
+    min-height:100vh;
+
+    padding:20px;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,0.1);
+}
+
+/* ================= HEADER ================= */
+
+.header{
+
+    background:
+    linear-gradient(135deg,
+    #1d4ed8,
+    #2563eb);
+
+    color:white;
+
+    padding:25px 40px;
+}
+
+.logo-section{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+}
+
+.logo{
+
+    width:75px;
+    height:75px;
+
+    background:white;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:30px;
+
+    color:#1d4ed8;
+
+    font-weight:700;
+}
+
+.header-text h1{
+
+    font-size:32px;
+
+    margin-bottom:5px;
+}
+
+/* ================= NOTICE ================= */
+
+.notice{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
+    padding:14px 25px;
+
+    font-size:14px;
+
+    font-weight:500;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-wrapper{
+
+    padding:35px 40px 25px;
+}
+
+.progress-container{
+
+    position:relative;
+}
+
+.progress-line{
+
+    position:absolute;
+
+    top:22px;
+
+    width:100%;
+
+    height:5px;
+
+    background:#dbeafe;
+
+    border-radius:30px;
+}
+
+.progress{
+
+    position:absolute;
+
+    top:22px;
+
+    width:0%;
+
+    height:5px;
+
+    background:
+    linear-gradient(to right,
+    #2563eb,
+    #60a5fa);
+
+    border-radius:30px;
+
+    transition:0.4s;
+}
+
+.steps{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    position:relative;
+}
+
+.step{
+
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:#dbeafe;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-weight:700;
+
+    color:#1d4ed8;
+
+    z-index:2;
+
+    cursor:pointer;
+
+    transition:0.4s;
+}
+
+.step.active{
+
+    background:#2563eb;
+
+    color:white;
+
+    transform:scale(1.08);
+}
+
+.step.completed{
+
+    background:#16a34a;
+
+    color:white;
+}
+
+.step-labels{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:15px;
+
+    text-align:center;
+}
+
+.step-labels div{
+
+    flex:1;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+/* ================= FORM ================= */
+
+.form-section{
+
+    display:none;
+
+    padding:40px;
+}
+
+.form-section.active{
+
+    display:block;
+}
+
+.section-title{
+
+    font-size:28px;
+
+    color:#1e3a8a;
+
+    margin-bottom:30px;
+
+    border-left:6px solid #2563eb;
+
+    padding-left:15px;
+}
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:25px;
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+.full-width{
+
+    grid-column:1/-1;
+}
+
+/* ================= INPUTS ================= */
+
+label{
+
+    margin-bottom:8px;
+
+    font-weight:600;
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1.5px solid #cbd5e1;
+
+    border-radius:14px;
+
+    background:#f8fafc;
+
+    font-size:15px;
+
+    outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:#2563eb;
+
+    background:white;
+}
+
+textarea{
+
+    resize:none;
+
+    min-height:110px;
+}
+
+/* ================= UPLOAD ================= */
+
+.upload-box{
+
+    border:2px dashed #93c5fd;
+
+    background:#eff6ff;
+
+    border-radius:18px;
+
+    padding:22px;
+}
+
+/* ================= BUTTONS ================= */
+
+.button-group{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:40px;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+button{
+
+    min-width:180px;
+
+    border:none;
+
+    padding:15px 20px;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+.prev-btn{
+
+    background:#e2e8f0;
+}
+
+.next-btn,
+.submit-btn{
+
+    background:
+    linear-gradient(to right,
+    #2563eb,
+    #1d4ed8);
+
+    color:white;
+}
+
+/* ================= DECLARATION ================= */
+
+.declaration{
+
+    background:#f8fafc;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    margin-top:25px;
+}
+
+.declaration-label{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    line-height:1.6;
+}
+
+.declaration-label input{
+
+    width:18px;
+
+    height:18px;
+
+    margin-top:3px;
+
+    flex-shrink:0;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+
+    display:none;
+
+    padding:60px 40px;
+
+    text-align:center;
+}
+
+.dashboard-card{
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:#f0fdf4;
+
+    border:
+    2px solid #86efac;
+
+    border-radius:25px;
+
+    padding:45px;
+}
+
+.application-number{
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    margin:25px 0;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#1d4ed8;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .step{
+
+        width:40px;
+        height:40px;
+    }
+
+    button{
+
+        width:100%;
+    }
+
+    .button-group{
+
+        flex-direction:column;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo-section">
+
+            <div class="logo">
+                AP
+            </div>
+
+            <div class="header-text">
+
+                <h1>
+                    Andhra Pradesh Collector Office
+                </h1>
+
+                <p>
+                    Recruitment Application Portal
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- NOTICE -->
+
+    <div class="notice">
+
+        ⚠ Please verify all details before final submission.
+
+    </div>
+
+    <!-- PROGRESS -->
+
+    <div class="progress-wrapper">
+
+        <div class="progress-container">
+
+            <div class="progress-line"></div>
+
+            <div class="progress"
+            id="progress"></div>
+
+            <div class="steps">
+
+                <div class="step active">1</div>
+                <div class="step">2</div>
+                <div class="step">3</div>
+                <div class="step">4</div>
+
+            </div>
+
+        </div>
+
+        <div class="step-labels">
+
+            <div>General</div>
+            <div>Education</div>
+            <div>Experience</div>
+            <div>Uploads</div>
+
+        </div>
+
+    </div>
+
+    <!-- FORM -->
+
+    <form id="multiForm">
+
+        <!-- STEP 1 -->
+
+        <div class="form-section active">
+
+            <h2 class="section-title">
+                General Details
+            </h2>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Aadhaar Number *</label>
+                    <input type="text" maxlength="12" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile Number *</label>
+                    <input type="tel" required>
+                </div>
+		
+		<div class="form-group">
+
+		    <label>
+		        Gender *
+		    </label>
+
+		    <select required>
+
+		        <option value="">
+		            Select Gender
+		        </option>
+
+		        <option>
+		            Male
+		        </option>
+
+		        <option>
+		            Female
+		        </option>
+
+		        <option>
+		            Other
+		        </option>
+
+		    </select>
+
+		</div>
+
+		<!-- PARENT STATUS -->
+
+	<div class="form-group">
+		
+		    <label>
+		        Parent Status *
+		    </label>
+		
+		    <select id="parentStatus" required>
+		
+		        <option value="">
+		            Select
+		        </option>
+		
+		        <option value="both">
+		            Both Parents
+		        </option>
+	
+		        <option value="father">
+		            Only Father
+		        </option>
+		
+		        <option value="mother">
+		            Only Mother
+		        </option>
+
+		        <option value="orphan">
+		            Orphan
+		        </option>
+
+		    </select>
+
+		</div>
+
+		<!-- FATHER NAME -->
+
+		<div class="form-group"
+		id="fatherField"
+		style="display:none;">
+
+		    <label>
+		        Father Name *
+		    </label>
+
+		    <input type="text"
+		    placeholder="Enter father name">
+
+		</div>
+
+		<!-- MOTHER NAME -->
+
+		<div class="form-group"
+		id="motherField"
+		style="display:none;">
+
+		    <label>
+        		Mother Name *
+		    </label>
+
+		    <input type="text"
+		    placeholder="Enter mother name">
+
+		</div>
+
+		<!-- GUARDIAN NAME -->
+
+		<div class="form-group"
+		id="guardianField"
+		style="display:none;">
+
+		    <label>
+		        Guardian Name *
+		    </label>
+
+		    <input type="text"
+		    placeholder="Enter guardian name">
+
+		</div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email">
+                </div>
+
+                <div class="form-group">
+                    <label>Category *</label>
+
+                    <select required>
+
+                        <option value="">
+                            Select
+                        </option>
+
+                        <option>OC</option>
+                        <option>BC-A</option>
+                        <option>BC-B</option>
+                        <option>BC-C</option>
+                        <option>BC-D</option>
+                        <option>SC</option>
+                        <option>ST</option>
+                        <option>EWS</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Annual Income *</label>
+                    <input type="number" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Identification Mark 1 *</label>
+                    <input type="text" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Identification Mark 2 *</label>
+                    <input type="text" required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Full Address *</label>
+                    <textarea required></textarea>
+                </div>
+
+            </div>
+
+            <div class="button-group">
+
+                <div></div>
+
+                <button type="button"
+                class="next-btn">
+
+                    Next →
+
+                </button>
+
+            </div>
+
+        </div>
+		<!-- STEP 2 -->
+
+<div class="form-section">
+
+    <h2 class="section-title">
+        Education Details
+    </h2>
+
+    <div class="form-grid">
+
+        <!-- SSC -->
+
+        <div class="form-group">
+
+            <label>
+                SSC Board
+            </label>
+
+            <input type="text"
+            placeholder="Board Name">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>
+                SSC Percentage
+            </label>
+
+            <input type="number"
+            placeholder="Enter percentage">
+
+        </div>
+
+        <!-- INTER OR DIPLOMA -->
+
+        <div class="form-group">
+
+            <label>
+                Intermediate / Diploma
+            </label>
+
+            <select id="interType">
+
+                <option value="">
+                    Select Qualification
+                </option>
+
+                <option value="intermediate">
+                    Intermediate
+                </option>
+
+                <option value="diploma">
+                    Diploma
+                </option>
+
+                <option value="none">
+                    Not Applicable
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- INTERMEDIATE DETAILS -->
+
+        <div id="intermediateFields"
+        style="display:none;"
+        class="full-width">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Intermediate College Name
+                    </label>
+
+                    <input type="text"
+                    placeholder="Enter college name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Intermediate Percentage
+                    </label>
+
+                    <input type="number"
+                    placeholder="Enter percentage">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Passed Out Year
+                    </label>
+
+                    <input type="number"
+                    placeholder="2024">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DIPLOMA DETAILS -->
+
+        <div id="diplomaFields"
+        style="display:none;"
+        class="full-width">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        Diploma College Name
+                    </label>
+
+                    <input type="text"
+                    placeholder="Enter college name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Diploma Percentage
+                    </label>
+
+                    <input type="number"
+                    placeholder="Enter percentage">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Passed Out Year
+                    </label>
+
+                    <input type="number"
+                    placeholder="2024">
+
+                </div>
+
+            </div>
+
+        </div>
+
+     	<!-- HIGHER STUDIES -->
+
+<div class="form-group">
+
+    <label>
+        Higher Studies
+    </label>
+
+    <select id="higherStudyType">
+
+        <option value="">
+            Select Qualification
+        </option>
+
+        <option value="degree">
+            Degree
+        </option>
+
+        <option value="btech">
+            B.Tech
+        </option>
+
+        <option value="mtech">
+            M.Tech
+        </option>
+
+        <option value="other">
+            Other
+        </option>
+
+        <option value="none">
+            Not Applicable
+        </option>
+
+    </select>
+
+</div>
+
+<!-- OTHER STUDY FIELD -->
+
+<div class="form-group"
+id="otherStudyField"
+style="display:none;">
+
+    <label>
+        Specify Other Study
+    </label>
+
+    <input type="text"
+    placeholder=
+    "Enter qualification like B.Sc, B.Com, LLB etc">
+
+</div>
+
+        <!-- HIGHER STUDIES DETAILS -->
+
+        <div id="higherStudyFields"
+        style="display:none;"
+        class="full-width">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        College / University Name
+                    </label>
+
+                    <input type="text"
+                    placeholder="Enter college name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Percentage / CGPA
+                    </label>
+
+                    <input type="text"
+                    placeholder="Enter percentage or CGPA">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Specialization / Branch
+                    </label>
+
+                    <input type="text"
+                    placeholder="CSE / MBA Finance">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Passed Out Year
+                    </label>
+
+                    <input type="number"
+                    placeholder="2025">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="button-group">
+
+        <button type="button"
+        class="prev-btn">
+
+            ← Previous
+
+        </button>
+
+        <button type="button"
+        class="next-btn">
+
+            Next →
+
+        </button>
+
+    </div>
+
+</div>
+
+	<!-- STEP 3 -->
+
+<div class="form-section">
+
+    <h2 class="section-title">
+        Experience Details
+    </h2>
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>
+                Applicant Type
+            </label>
+
+            <select id="experienceType">
+
+                <option value="">
+                    Select
+                </option>
+
+                <option value="fresher">
+                    Fresher
+                </option>
+
+                <option value="experienced">
+                    Experienced
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- INTERNSHIP QUESTION -->
+
+        <div class="form-group"
+        id="internshipQuestion"
+        style="display:none;">
+
+            <label>
+                Do You Have Internship Experience ?
+            </label>
+
+            <select id="internshipOption">
+
+                <option value="">
+                    Select
+                </option>
+
+                <option value="yes">
+                    Yes
+                </option>
+
+                <option value="no">
+                    No
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- INTERNSHIP DETAILS -->
+
+    <div id="internshipFields"
+    style="display:none; margin-top:25px;">
+	
+		<div class="form-group">
+
+		    <label>	
+		        Number of Internship Companies
+		    </label>
+			<input type="number"
+			id="internshipCompanyCount"
+			min="1"
+			max="5"
+			placeholder="Max 5 companies">
+		</div>
+
+		<!-- INTERNSHIP COMPANY NAMES -->
+
+		<div id="internshipCompanyContainer"
+		class="full-width">
+
+		</div>
+	</div>
+
+    <!-- EXPERIENCED DETAILS -->
+
+    <div id="experiencedFields"
+    style="display:none; margin-top:25px;">
+	
+		<div class="form-group">
+
+		    <label>
+		        Number of Companies Worked
+		    </label>
+
+		   <input type="number"
+			id="companyCount"
+			min="1"
+			max="5"
+			placeholder="Max 5 companies">
+		</div>		
+
+		<!-- COMPANY NAME FIELDS -->
+
+		<div id="companyNamesContainer"
+		class="full-width">
+
+		</div>
+
+	</div>
+      
+    <div class="button-group">
+
+        <button type="button"
+        class="prev-btn">
+
+            ← Previous
+
+        </button>
+
+        <button type="button"
+        class="next-btn">
+
+            Next →
+
+        </button>
+
+    </div>
+</div>
+
+
+        <!-- STEP 4 -->
+
+        <div class="form-section">
+
+            <h2 class="section-title">
+                Upload Documents
+            </h2>
+
+            <div class="form-grid">
+
+                <div class="upload-box">
+                    <label>Identity Proof <small>(AADHAR or PAN or Voter ID)</small>*</label>
+                    <input type="file" class="fileUpload" name="identityProof" accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+
+                <div class="upload-box">
+                    <label>SSC Marks Memo *</label>
+                    <input type="file" class="fileUpload" name="sscMarksMemo" accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+
+                <div class="upload-box">
+                    <label>Recent Examination Marks Memo *</label>
+                    <input type="file" class="fileUpload" name="recentExaminationMarksMemo" accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+
+                <div class="upload-box">
+                    <label>Income Certificate *</label>
+                    <input type="file" class="fileUpload" name="incomeCertificate" accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+
+                <div class="upload-box">
+                    <label>Caste Certificate *</label>
+                    <input type="file" class="fileUpload" name="casteCertificate" accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+
+                <div class="upload-box">
+                    <label>Passport Photo *</label>
+                    <input type="file" class="fileUpload" name="passportPhoto" accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+
+                <div class="upload-box">
+                    <label>Signature *</label>
+                    <input type="file" class="fileUpload" name="signature" accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+
+                <div class="upload-box full-width">
+                    <label>Resume / CV</label>
+                    <input type="file" class="fileUpload" name="resume" accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+
+            </div>
+
+            <div class="declaration">
+
+		    <label class="declaration-label">
+
+		        <input type="checkbox" required>
+
+		        <span>
+		            I hereby declare that all the
+		            information provided by me is true.
+		        </span>
+
+		    </label>
+
+		</div>
+            <div class="button-group">
+
+                <button type="button"
+                class="prev-btn">
+
+                    ← Previous
+
+                </button>
+
+                <button type="submit"
+                class="submit-btn">
+
+                    Final Submit
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+<script>
+
+/* ================= ELEMENTS ================= */
+
+const steps =
+document.querySelectorAll('.step');
+
+const sections =
+document.querySelectorAll('.form-section');
+
+const nextBtns =
+document.querySelectorAll('.next-btn');
+
+const prevBtns =
+document.querySelectorAll('.prev-btn');
+
+const progress =
+document.getElementById('progress');
+
+const form =
+document.getElementById('multiForm');
+
+const dashboard =
+document.getElementById('dashboard');
+
+const applicationNumber =
+document.getElementById('applicationNumber');
+
+const internshipQuestion =
+document.getElementById('internshipQuestion');
+
+const internshipOption =
+document.getElementById('internshipOption');
+
+const internshipFields =
+document.getElementById('internshipFields');
+
+const experienceType =
+document.getElementById('experienceType');
+
+const experiencedFields =
+document.getElementById('experiencedFields');
+
+/* ================= STEP ================= */
+
+let currentStep = 0;
+
+/* ================= UPDATE FORM ================= */
+
+function updateForm(){
+
+    sections.forEach((section,index)=>{
+
+        if(index === currentStep){
+
+            section.classList.add('active');
+
+        }else{
+
+            section.classList.remove('active');
+        }
+
+    });
+
+    steps.forEach((step,index)=>{
+
+        step.classList.remove(
+        'active',
+        'completed');
+
+        if(index < currentStep){
+
+            step.classList.add(
+            'completed');
+        }
+
+        else if(index === currentStep){
+
+            step.classList.add(
+            'active');
+        }
+
+    });
+
+    const progressPercent =
+    (currentStep /
+    (steps.length - 1)) * 100;
+
+    progress.style.width =
+    progressPercent + '%';
+}
+
+/* ================= NEXT ================= */
+
+nextBtns.forEach(button=>{
+
+    button.addEventListener('click',()=>{
+
+        if(currentStep <
+        sections.length - 1){
+
+            currentStep++;
+
+            updateForm();
+
+            window.scrollTo({
+
+                top:0,
+                behavior:'smooth'
+
+            });
+        }
+
+    });
+
+});
+
+/* ================= PREVIOUS ================= */
+
+prevBtns.forEach(button=>{
+
+    button.addEventListener('click',()=>{
+
+        if(currentStep > 0){
+
+            currentStep--;
+
+            updateForm();
+
+        }
+
+    });
+
+});
+
+/* ================= STEP CLICK ================= */
+
+steps.forEach((step,index)=>{
+
+    step.addEventListener('click',()=>{
+
+        currentStep = index;
+
+        updateForm();
+
+    });
+
+});
+
+/* ================= PARENT STATUS ================= */
+
+const parentStatus =
+document.getElementById(
+'parentStatus');
+
+const fatherField =
+document.getElementById(
+'fatherField');
+
+const motherField =
+document.getElementById(
+'motherField');
+
+const guardianField =
+document.getElementById(
+'guardianField');
+
+parentStatus.addEventListener(
+'change',
+function(){
+
+    /* HIDE ALL FIRST */
+
+    fatherField.style.display =
+    'none';
+
+    motherField.style.display =
+    'none';
+
+    guardianField.style.display =
+    'none';
+
+    /* BOTH PARENTS */
+
+    if(this.value === 'both'){
+
+        fatherField.style.display =
+        'flex';
+
+        motherField.style.display =
+        'flex';
+    }
+
+    /* ONLY FATHER */
+
+    else if(this.value === 'father'){
+
+        fatherField.style.display =
+        'flex';
+    }
+
+    /* ONLY MOTHER */
+
+    else if(this.value === 'mother'){
+
+        motherField.style.display =
+        'flex';
+    }
+
+    /* ORPHAN */
+
+    else if(this.value === 'orphan'){
+
+        guardianField.style.display =
+        'flex';
+	fatherField.querySelector('input').value = '';
+	motherField.querySelector('input').value = '';
+	guardianField.querySelector('input').value = '';
+    }
+
+});
+
+/* ================= EXPERIENCE ================= */
+
+experienceType.addEventListener(
+'change',
+function(){
+
+    if(this.value === 'experienced'){
+
+        experiencedFields.style.display =
+        'block';
+
+        internshipQuestion.style.display =
+        'none';
+
+        internshipFields.style.display =
+        'none';
+
+        internshipOption.value = "";
+    }
+
+    else if(this.value === 'fresher'){
+
+        experiencedFields.style.display =
+        'none';
+
+        internshipQuestion.style.display =
+        'flex';
+
+        internshipFields.style.display =
+        'none';
+
+        internshipOption.value = "";
+    }
+
+    else{
+
+        experiencedFields.style.display =
+        'none';
+
+        internshipQuestion.style.display =
+        'none';
+
+        internshipFields.style.display =
+        'none';
+    }
+
+});
+
+/* ================= INTERNSHIP ================= */
+
+internshipOption.addEventListener(
+'change',
+function(){
+
+    if(this.value === 'yes'){
+
+        internshipFields.style.display =
+        'block';
+    }
+
+    else{
+
+        internshipFields.style.display =
+        'none';
+    }
+
+});
+
+/* ================= SUBMIT ================= */
+
+form.addEventListener(
+'submit',
+function(e){
+
+    e.preventDefault();
+
+    form.style.display = 'none';
+
+    document.querySelector(
+    '.progress-wrapper')
+    .style.display = 'none';
+
+    const randomNo =
+    'APCOL' +
+    Math.floor(
+    100000 + Math.random() * 900000
+    );
+
+    applicationNumber.innerHTML =
+    randomNo;
+
+    dashboard.style.display =
+    'block';
+
+});
+
+/* ================= INTER / DIPLOMA ================= */
+
+const interType =
+document.getElementById(
+'interType');
+
+const intermediateFields =
+document.getElementById(
+'intermediateFields');
+
+const diplomaFields =
+document.getElementById(
+'diplomaFields');
+
+interType.addEventListener(
+'change',
+function(){
+
+    if(this.value === 'intermediate'){
+
+        intermediateFields.style.display =
+        'block';
+
+        diplomaFields.style.display =
+        'none';
+    }
+
+    else if(this.value === 'diploma'){
+
+        diplomaFields.style.display =
+        'block';
+
+        intermediateFields.style.display =
+        'none';
+    }
+
+    else{
+
+        intermediateFields.style.display =
+        'none';
+
+        diplomaFields.style.display =
+        'none';
+    }
+
+});
+
+/* ================= HIGHER STUDIES ================= */
+
+const higherStudyType =
+document.getElementById(
+'higherStudyType');
+
+const higherStudyFields =
+document.getElementById(
+'higherStudyFields');
+
+const otherStudyField =
+document.getElementById(
+'otherStudyField');
+
+higherStudyType.addEventListener(
+'change',
+function(){
+
+    if(this.value !== '' &&
+       this.value !== 'none'){
+
+        higherStudyFields.style.display =
+        'block';
+
+    }
+
+    else{
+
+        higherStudyFields.style.display =
+        'none';
+    }
+
+    /* SHOW OTHER FIELD */
+
+    if(this.value === 'other'){
+
+        otherStudyField.style.display =
+        'flex';
+    }
+
+    else{
+
+        otherStudyField.style.display =
+        'none';
+    }
+
+});
+
+/* ================= EXPERIENCED COMPANIES ================= */
+
+const companyCount = document.getElementById('companyCount');
+const companyNamesContainer = document.getElementById('companyNamesContainer');
+
+companyCount.addEventListener('input', function () {
+
+    const existingData = [];
+
+    document.querySelectorAll('#companyNamesContainer .company-block').forEach(block => {
+        const inputs = block.querySelectorAll('input, select, textarea');
+
+        existingData.push({
+            org: inputs[0]?.value || "",
+            des: inputs[1]?.value || "",
+            exp: inputs[2]?.value || "",
+            sal: inputs[3]?.value || "",
+            join: inputs[4]?.value || "",
+            rel: inputs[5]?.value || "",
+            type: inputs[6]?.value || "",
+            loc: inputs[7]?.value || "",
+            role: inputs[8]?.value || ""
+        });
+    });
+
+    companyNamesContainer.innerHTML = "";
+
+    let count = parseInt(this.value) || 0;
+
+    if (count > 5) {
+        count = 5;
+        this.value = 5;
+    }
+
+    for (let i = 0; i < count; i++) {
+
+        const data = existingData[i] || {};
+
+        companyNamesContainer.innerHTML += `
+        <div class="form-grid company-block"
+        style="margin-top:25px; padding:20px; border:1px solid #cbd5e1; border-radius:16px; background:#f8fafc;">
+
+            <div class="form-group">
+                <label>Organization Name ${i + 1}</label>
+                <input type="text" value="${data.org}">
+            </div>
+
+            <div class="form-group">
+                <label>Designation</label>
+                <input type="text" value="${data.des}">
+            </div>
+
+            <div class="form-group">
+                <label>Total Experience</label>
+                <input type="text" value="${data.exp}">
+            </div>
+
+            <div class="form-group">
+                <label>Current Salary</label>
+                <input type="number" value="${data.sal}">
+            </div>
+
+            <div class="form-group">
+                <label>Joining Date</label>
+                <input type="date" value="${data.join}">
+            </div>
+
+            <div class="form-group">
+                <label>Relieving Date</label>
+                <input type="date" value="${data.rel}">
+            </div>
+
+            <div class="form-group">
+                <label>Employment Type</label>
+                <select>
+    		<option ${data.type === 'Full Time' ? 'selected' : ''}>Full Time</option>
+    		<option ${data.type === 'Contract' ? 'selected' : ''}>Contract</option>
+    		<option ${data.type === 'Temporary' ? 'selected' : ''}>Temporary</option>
+    		<option ${data.type === 'Outsourcing' ? 'selected' : ''}>Outsourcing</option>
+		</select>
+            </div>
+
+            <div class="form-group">
+                <label>Work Location</label>
+                <input type="text" value="${data.loc}">
+            </div>
+
+            <div class="form-group full-width">
+                <label>Roles & Responsibilities</label>
+                <textarea>${data.role}</textarea>
+            </div>
+
+        </div>`;
+    }
+});
+
+/* ================= INTERNSHIP COMPANIES ================= */
+
+const internshipCompanyCount = document.getElementById('internshipCompanyCount');
+const internshipCompanyContainer = document.getElementById('internshipCompanyContainer');
+
+internshipCompanyCount.addEventListener(
+'input',
+function(){
+
+    internshipCompanyContainer.innerHTML = "";
+
+    let count = parseInt(this.value) || 0;
+    if(count > 5){
+
+        count = 5;
+        this.value = 5;
+    }
+
+    for(let i = 1; i <= count; i++){
+
+        internshipCompanyContainer.innerHTML += `
+
+        <div class="form-grid"
+        style="
+        margin-top:25px;
+        padding:20px;
+        border:1px solid #cbd5e1;
+        border-radius:16px;
+        background:#f8fafc;">
+
+            <div class="form-group">
+
+                <label>
+                    Internship Organization ${i}
+                </label>
+
+                <input type="text"
+                placeholder="Enter organization name">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Internship Role
+                </label>
+
+                <input type="text"
+                placeholder="Data Entry Intern">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Internship Duration
+                </label>
+
+                <select>
+
+                    <option value="">
+                        Select Duration
+                    </option>
+
+                    <option>
+                        1 Month
+                    </option>
+
+                    <option>
+                        2 Months
+                    </option>
+
+                    <option>
+                        3 Months
+                    </option>
+
+                    <option>
+                        6 Months
+                    </option>
+
+                    <option>
+                        1 Year
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Internship Stipend
+                </label>
+
+                <input type="number"
+                placeholder="Enter stipend amount(Optional)">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Internship Joining Date
+                </label>
+
+                <input type="date">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Internship End Date
+                </label>
+
+                <input type="date">
+
+            </div>
+
+            <div class="form-group full-width">
+
+                <label>
+                    Skills Learned
+                </label>
+
+                <textarea
+                placeholder=
+                "Describe skills learned during internship">
+                </textarea>
+
+            </div>
+
+        </div>
+
+        `;
+    }
+
+});
+
+const fileUploads =
+document.querySelectorAll('.fileUpload');
+
+fileUploads.forEach(input => {
+
+    input.addEventListener('change', function(){
+
+        const file = this.files[0];
+
+        if(file){
+
+            const maxSize =
+            2 * 1024 * 1024; // 2MB
+
+            const allowedTypes = [
+                'image/jpeg',
+                'image/png',
+                'application/pdf'
+            ];
+
+            /* FILE TYPE CHECK */
+
+            if(!allowedTypes.includes(file.type)){
+
+                alert(
+                'Only JPG, JPEG, PNG and PDF files are allowed.'
+                );
+
+                this.value = '';
+                return;
+            }
+
+            /* FILE SIZE CHECK */
+
+            if(file.size > maxSize){
+
+                alert(
+                'File size must be less than 2MB.'
+                );
+
+                this.value = '';
+            }
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
