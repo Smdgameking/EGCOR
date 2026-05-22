@@ -142,13 +142,13 @@ const upload = multer({
 
 router.get(
 
-'/upload',
+'/apply',
 
 isLoggedIn,
 
 (req, res)=>{
 
-    res.render('Upload');
+    res.render('Application');
 
 });
 
@@ -160,7 +160,7 @@ isLoggedIn,
 
 router.post(
 
-'/upload',
+'/apply',
 
 isLoggedIn,
 
