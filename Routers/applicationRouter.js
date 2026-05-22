@@ -193,15 +193,6 @@ async (req, res)=>{
 
 
 
-    /* NORMAL FORM DATA */
-
-    console.log(req.body);
-
-
-
-    /* FILE DATA */
-
-    console.log(req.file);
 
 
 
@@ -274,6 +265,8 @@ async (req, res)=>{
         newPath
 
     );
+
+
 
     
 

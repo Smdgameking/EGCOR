@@ -1,24 +1,35 @@
 const mongoose = require('mongoose');
 
 const newsSchema = new mongoose.Schema({
-
+    id: {
+        type: Number,
+        required: true,
+    },
     title: {
         type: String,
         required: true
     },
-    category: {
+    status: {
         type: String,
+        enum: ['Active', 'Inactive'],
         required: true
     },
     description: {
         type: String,
         required: true
     },
-    date: {
+    qualification: {
+        type: String,
+        required: true
+    },
+    lastDate: {
         type: Date,
+        required: true
+    },
+    location: {
+        type: String,
         required: true
     }
 });
-
 
 module.exports = newsSchema;

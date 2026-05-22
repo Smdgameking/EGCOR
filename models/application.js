@@ -3,21 +3,24 @@ const mongoose = require('mongoose');
 const ApplicationSchema = new mongoose.Schema({
 
     /* ================= GENERAL DETAILS ================= */
-
+    id:{
+        type: Number,
+        required: true
+    },
     fullName: {
         type: String,
-        trim: true
+        required: true
     },
 
     aadhaarNumber: {
-        type: String,
+        type: Number,
         unique: true,
-        match: /^[0-9]{12}$/
+        required: true
     },
 
     mobileNumber: {
-        type: String,
-        match: /^[0-9]{10}$/
+        type: Number,
+        required: true
     },
 
     gender: {
@@ -52,9 +55,7 @@ const ApplicationSchema = new mongoose.Schema({
 
     email: {
         type: String,
-        lowercase: true,
-        trim: true,
-        default: ''
+        required: true
     },
 
     category: {
