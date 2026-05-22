@@ -143,13 +143,13 @@ const upload = multer({
 
 router.get(
 
-'/upload',
+'/apply',
 
 isLoggedIn,
 
 (req, res)=>{
 
-    res.render('Upload');
+    res.render('Application');
 
 });
 
@@ -161,13 +161,31 @@ isLoggedIn,
 
 router.post(
 
-'/upload',
+'/apply',
 
 isLoggedIn,
 
 /* CATCH ONE FILE */
 
-upload.single('file'),
+upload.fields([
+
+    { name: 'identityProof', maxCount: 1 },
+
+    { name: 'sscMarksMemo', maxCount: 1 },
+
+    { name: 'recentExaminationMarksMemo', maxCount: 1 },
+
+    { name: 'incomeCertificate', maxCount: 1 },
+
+    { name: 'casteCertificate', maxCount: 1 },
+
+    { name: 'passportPhoto', maxCount: 1 },
+
+    { name: 'signature', maxCount: 1 },
+
+    { name: 'resume', maxCount: 1 }
+
+]),
 
 async (req, res)=>{
 
