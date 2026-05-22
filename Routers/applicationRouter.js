@@ -143,13 +143,15 @@ const upload = multer({
 
 router.get(
 
-'/apply',
-
+'/apply/:id',
 isLoggedIn,
 
 (req, res)=>{
 
-    res.render('Application');
+    const applicationId = req.params.id;
+
+
+    res.render('Application', { jobId: applicationId });
 
 });
 
@@ -276,11 +278,7 @@ async (req, res)=>{
     
 
 
-    res.send(
-
-    'File Uploaded Successfully 😎🔥'
-
-    );
+    req.redirect('/dashboard');
 
 });
 

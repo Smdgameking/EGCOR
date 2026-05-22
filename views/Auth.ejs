@@ -607,6 +607,28 @@ form{
     }
 
 }
+.password-checklist{
+
+    margin-top: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.password-checklist p{
+
+    font-size: 12px;
+
+    color: #64748b;
+
+    transition: 0.3s;
+
+}
 
 </style>
 
@@ -959,6 +981,7 @@ form{
                             >
                                 👁️
                             </span>
+                            
 
                         </div>
 
@@ -976,6 +999,25 @@ form{
                                 Password Strength
 
                             </small>
+
+                        </div>
+                        <div class="password-checklist">
+
+                            <p id="lengthCheck">
+                                ❌ Minimum 8 Characters
+                            </p>
+
+                            <p id="uppercaseCheck">
+                            ❌ One Uppercase Letter
+                            </p>
+
+                            <p id="numberCheck">
+                                ❌ One Number
+                            </p>
+
+                            <p id="specialCheck">
+                                ❌ One Special Character
+                            </p>
 
                         </div>
 
@@ -1184,6 +1226,99 @@ passwordInput.addEventListener(
         this.value;
 
         let strength = 0;
+        /* LENGTH */
+
+        if(password.length >= 8){
+
+            lengthCheck.innerHTML =
+            "✅ Minimum 8 Characters";
+
+            lengthCheck.style.color =
+            "#22c55e";
+
+        }
+
+        else{
+
+            lengthCheck.innerHTML =
+            "❌ Minimum 8 Characters";
+
+            lengthCheck.style.color =
+            "#64748b";
+
+        }
+
+
+
+        /* UPPERCASE */
+
+        if(/[A-Z]/.test(password)){
+
+            uppercaseCheck.innerHTML =
+            "✅ One Uppercase Letter";
+
+            uppercaseCheck.style.color =
+            "#22c55e";
+
+        }
+
+        else{
+
+            uppercaseCheck.innerHTML =
+            "❌ One Uppercase Letter";
+
+            uppercaseCheck.style.color =
+            "#64748b";
+
+        }
+
+
+
+        /* NUMBER */
+
+        if(/[0-9]/.test(password)){
+
+            numberCheck.innerHTML =
+            "✅ One Number";
+
+            numberCheck.style.color =
+            "#22c55e";
+
+        }
+
+        else{
+
+            numberCheck.innerHTML =
+            "❌ One Number";
+
+            numberCheck.style.color =
+            "#64748b";
+
+        }
+
+
+
+        /* SPECIAL CHARACTER */
+
+        if(/[^A-Za-z0-9]/.test(password)){
+
+            specialCheck.innerHTML =
+            "✅ One Special Character";
+
+            specialCheck.style.color =
+            "#22c55e";
+
+        }
+
+        else{
+
+            specialCheck.innerHTML =
+            "❌ One Special Character";
+
+            specialCheck.style.color =
+            "#64748b";
+
+        }
 
 
         if(password.length >= 8){

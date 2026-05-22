@@ -10,8 +10,8 @@ router.use(session({
 
 router.get('/captcha', (req,res)=>{
   const captcha = svgcaptcha.create({
-    size: 5,
-    noise: 3,
+    size: 4,
+    noise: 10,
     color: true,
     ignoreChars: "0Oo1ilI",
     charPreset: "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789"

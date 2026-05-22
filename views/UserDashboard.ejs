@@ -13,7 +13,6 @@ content="width=device-width, initial-scale=1.0">
 User Dashboard
 </title>
 
-
 <style>
 
 /* RESET */
@@ -574,7 +573,6 @@ body{
 
 </head>
 
-
 <body>
 
 
@@ -616,25 +614,49 @@ body{
             Profile
         </a>
 
-        <a href="/logout">
-            Logout
-        </a>
+        <% if(user){ %>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        <% } %>
 
     </div>
 
 
 
+    <!-- PROFILE / LOGIN -->
+
     <div class="profile">
 
-        <img
-        src="<%= user.profileImage || 'https://i.pravatar.cc/100' %>"
-        >
+        <% if(user){ %>
 
-        <span>
 
-            <%= user.fullname.firstname %>
+            <span>
 
-        </span>
+                <%= user.username %>
+
+            </span>
+
+        <% } else { %>
+
+            <a
+            href="/auth"
+            style="
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:10px 18px;
+            border-radius:10px;
+            font-weight:bold;
+            ">
+
+                Login
+
+            </a>
+
+        <% } %>
 
     </div>
 
@@ -661,7 +683,10 @@ body{
             <h1>
 
                 Welcome Back,
-                <%= user.fullname.firstname %> 👋
+
+                <%= user ? user.username : 'Guest' %>
+
+                👋
 
             </h1>
 
@@ -768,7 +793,7 @@ body{
 
 
 
-    <!-- NEWS SECTION -->
+    <!-- NEWS -->
 
     <h2 class="section-title">
 
@@ -904,10 +929,11 @@ body{
             </div>
 
 
+            <!-- APPLY BUTTON -->
+
             <form
-            action="/user/apply/<%= job._id %>"
-            method="POST"
-            >
+            action="/apply/<%= job._id %>"
+            method="GET">
 
                 <button class="apply-btn">
 
@@ -927,7 +953,6 @@ body{
 
 
 </div>
-
 
 </body>
 

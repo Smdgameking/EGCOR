@@ -19,39 +19,30 @@ router.get(
 
     {
 
-        /* USER */
+        user:
 
-        user: {
-
-            fullname: {
-
-                firstname: 'Architect'
-
-            },
-
-            profileImage:
-
-            'https://i.pravatar.cc/100'
-
-        },
+        req.session.user
+        ?
+        req.session.user
+        :
+        null,
 
 
-
-        /* STATS */
 
         totalApplications: 10,
+
+
 
         totalNotifications: 5,
 
 
-
-        /* HERO NOTIFICATION */
 
         latestNotification: {
 
             title:
 
             'New Recruitment Released',
+
 
             message:
 
@@ -60,8 +51,6 @@ router.get(
         },
 
 
-
-        /* NEWS */
 
         news: [
 
@@ -86,60 +75,11 @@ router.get(
 
                 '20 May 2026'
 
-            },
-
-
-
-            {
-
-                title:
-
-                'New Recruitment Notification',
-
-
-                category:
-
-                'Recruitment',
-
-
-                description:
-
-                'Applications started for revenue department jobs.',
-
-
-                date:
-
-                '22 May 2026'
-
-            },
-            {
-
-                title:
-
-                'NIC training Admitions are Open',
-
-
-                category:
-
-                'Admitions',
-
-
-                description:
-
-                'NIC training Admitions are Opened',
-
-
-                date:
-
-                '22 May 2026'
-
             }
 
         ],
 
 
-
-        /* JOBS */
 
         jobs: [
 
@@ -176,75 +116,6 @@ router.get(
 
                 'Hyderabad'
 
-            },
-
-
-
-            {
-
-                _id: 2,
-
-                title:
-
-                'Data Entry Operator',
-
-
-                status:
-
-                'Active',
-
-
-                description:
-
-                'Typing and office management role.',
-
-
-                qualification:
-
-                '12th Pass',
-
-
-                lastDate:
-
-                '28 June 2026',
-
-
-                location:
-
-                'Hyderabad'
-
-            },
-            {
-                _id: 3,
-
-                title:
-
-                'Web developer',
-
-
-                status:
-
-                'Active',
-
-
-                description:
-
-                'Coding and backened management role.',
-
-
-                qualification:
-
-                '12th Pass/Diploma pass',
-
-
-                lastDate:
-
-                '28 June 2026',
-
-
-                location:
-
-                'Kakinada'
             }
 
         ]

@@ -542,10 +542,13 @@ button{
 
     <!-- FORM -->
 
-    <form id="multiForm">
+    <form id="multiForm" accept=".jpg,.png,.jpeg,.pdf" enctype="multipart/form-data" method="POST" action="/apply">
 
         <!-- STEP 1 -->
-
+        <input
+            type="hidden"
+            name="jobId"
+            value="<%= jobId %>">
         <div class="form-section active">
 
             <h2 class="section-title">
@@ -694,6 +697,7 @@ button{
                         <option>BC-B</option>
                         <option>BC-C</option>
                         <option>BC-D</option>
+                        <option>BC-E</option>
                         <option>SC</option>
                         <option>ST</option>
                         <option>EWS</option>
@@ -1532,30 +1536,6 @@ function(){
 
 /* ================= SUBMIT ================= */
 
-form.addEventListener(
-'submit',
-function(e){
-
-    e.preventDefault();
-
-    alert(
-    'Application Submitted Successfully!'
-    );
-
-    form.reset();
-
-    currentStep = 0;
-
-    updateForm();
-
-    window.scrollTo({
-
-        top:0,
-        behavior:'smooth'
-
-    });
-
-});
 
 /* ================= INTER / DIPLOMA ================= */
 

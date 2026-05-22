@@ -18,6 +18,24 @@ router.post('/register-user',(req, res, next) => {
   if (req.body.captcha !== req.session.captcha) {
     return res.send("wrong captcha");
   }
+  const passwd = req.body.password;
+  let strength = 0
+  if(/[A-Z]/.test(passwd)){
+    strength++;
+  }
+
+  if(/[0-9]/.test(passwd)){
+    strength++;
+  }
+  if(/[a-z]/.test(passwd)){
+    strength++;
+  }
+  if(/[@$!%*?&]/.test(passwd)){
+    strength++;
+  }
+  if(strength < 3){
+    return res.render("PasswordError");
+  }
   const salt = await bcrypt.genSalt(12);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
   const hashedConfirmPassword = await bcrypt.hash(req.body.confirmpassword, salt);
@@ -36,7 +54,12 @@ router.post('/register-user',(req, res, next) => {
     role: 'user'
   });
   await user.save();
-  res.render("Upload");
+  req.session.user = {
+    id: user._id,
+    username: user.fullname.firstname + " " + user.fullname.lastname,
+    role: user.role
+  };
+  res.redirect('/dashboard');
 });
 router.post('/login', async (req, res) => {
   const { username, email, password, captcha } = req.body;
@@ -57,7 +80,7 @@ router.post('/login', async (req, res) => {
     username: user.fullname.firstname + " " + user.fullname.lastname,
     role: user.role
   };
-  res.render("Upload");
+  res.redirect('/dashboard');
 });
 
 module.exports = router
