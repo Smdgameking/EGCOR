@@ -10,8 +10,6 @@ router.get(
 
 '/dashboard',
 
-isLoggedIn,
-
 (req, res)=>{
 
 
@@ -113,6 +111,28 @@ isLoggedIn,
 
                 '22 May 2026'
 
+            },
+            {
+
+                title:
+
+                'NIC training Admitions are Open',
+
+
+                category:
+
+                'Admitions',
+
+
+                description:
+
+                'NIC training Admitions are Opened',
+
+
+                date:
+
+                '22 May 2026'
+
             }
 
         ],
@@ -193,6 +213,38 @@ isLoggedIn,
 
                 'Hyderabad'
 
+            },
+            {
+                _id: 3,
+
+                title:
+
+                'Web developer',
+
+
+                status:
+
+                'Active',
+
+
+                description:
+
+                'Coding and backened management role.',
+
+
+                qualification:
+
+                '12th Pass/Diploma pass',
+
+
+                lastDate:
+
+                '28 June 2026',
+
+
+                location:
+
+                'Kakinada'
             }
 
         ]

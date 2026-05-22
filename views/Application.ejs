@@ -435,50 +435,6 @@ button{
     flex-shrink:0;
 }
 
-/* ================= DASHBOARD ================= */
-
-.dashboard{
-
-    display:none;
-
-    padding:60px 40px;
-
-    text-align:center;
-}
-
-.dashboard-card{
-
-    max-width:700px;
-
-    margin:auto;
-
-    background:#f0fdf4;
-
-    border:
-    2px solid #86efac;
-
-    border-radius:25px;
-
-    padding:45px;
-}
-
-.application-number{
-
-    background:white;
-
-    padding:15px;
-
-    border-radius:14px;
-
-    margin:25px 0;
-
-    font-size:24px;
-
-    font-weight:700;
-
-    color:#1d4ed8;
-}
-
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
@@ -1313,12 +1269,6 @@ document.getElementById('progress');
 const form =
 document.getElementById('multiForm');
 
-const dashboard =
-document.getElementById('dashboard');
-
-const applicationNumber =
-document.getElementById('applicationNumber');
-
 const internshipQuestion =
 document.getElementById('internshipQuestion');
 
@@ -1508,7 +1458,6 @@ function(){
         'flex';
 	fatherField.querySelector('input').value = '';
 	motherField.querySelector('input').value = '';
-	guardianField.querySelector('input').value = '';
     }
 
 });
@@ -1589,23 +1538,22 @@ function(e){
 
     e.preventDefault();
 
-    form.style.display = 'none';
-
-    document.querySelector(
-    '.progress-wrapper')
-    .style.display = 'none';
-
-    const randomNo =
-    'APCOL' +
-    Math.floor(
-    100000 + Math.random() * 900000
+    alert(
+    'Application Submitted Successfully!'
     );
 
-    applicationNumber.innerHTML =
-    randomNo;
+    form.reset();
 
-    dashboard.style.display =
-    'block';
+    currentStep = 0;
+
+    updateForm();
+
+    window.scrollTo({
+
+        top:0,
+        behavior:'smooth'
+
+    });
 
 });
 

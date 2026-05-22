@@ -9,6 +9,7 @@ const path = require('path');
 const fs = require('fs');
 
 const isLoggedIn = require('../middlewares/isLoggedIn');
+const Application = require('../models/Application');
 
 
  
@@ -168,7 +169,7 @@ isLoggedIn,
 
 upload.single('file'),
 
-(req, res)=>{
+async (req, res)=>{
 
 
 
@@ -254,7 +255,7 @@ upload.single('file'),
 
     );
 
-
+    
 
 
     res.send(
