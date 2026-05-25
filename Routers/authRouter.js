@@ -8,9 +8,11 @@ router.use(session({
   resave: false,
   saveUninitialized: true
 }));
+
 router.get('/auth', (req, res) => {
   res.render('Auth');
 });
+
 router.post('/register-user',(req, res, next) => {
   console.log(req.body);
   next();
