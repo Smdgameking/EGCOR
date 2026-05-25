@@ -1,145 +1,220 @@
+// models/Application.js
+
 const mongoose = require('mongoose');
 
-const ApplicationSchema = new mongoose.Schema({
+const applicationSchema =
+new mongoose.Schema({
 
-    /* ================= GENERAL DETAILS ================= */
-    id:{
+    /* ================= USER ================= */
+
+    userId:{
+
+        type:
+        mongoose.Schema.Types.ObjectId,
+
+        ref:'User',
+
+        required:true
+    },
+
+
+
+    /* ================= JOB ================= */
+
+    jobId:{
+
         type: Number,
-        required: true
-    },
-    fullName: {
-        type: String,
-        required: true
+        required:true
     },
 
-    aadhaarNumber: {
-        type: Number,
-        unique: true,
-        required: true
+
+
+    /* ================= GENERAL ================= */
+
+    fullname:{
+
+        type:String,
+
+        required:true,
+
+        trim:true
     },
 
-    mobileNumber: {
-        type: Number,
-        required: true
+    adhaar:{
+
+        type:String,
+
+        required:true,
+
+        unique:true
     },
 
-    gender: {
-        type: String,
-        enum: ['Male', 'Female', 'Other'],
+    mobileno:{
+
+        type:String,
+
+        required:true
     },
 
-    parentStatus: {
-        type: String,
-        enum: [
+    gender:{
+
+        type:String,
+
+        enum:[
+            'male',
+            'female',
+            'other'
+        ]
+    },
+
+    parentstatus:{
+
+        type:String,
+
+        enum:[
             'both',
             'father',
             'mother',
             'orphan'
         ],
+        required:true
     },
 
-    fatherName: {
-        type: String,
-        default: ''
+    fathername:{
+        type:String,
+        default:null
     },
 
-    motherName: {
-        type: String,
-        default: ''
+    mothername:{
+        type:String,
+        default:null
     },
 
-    guardianName: {
-        type: String,
-        default: ''
+    gurdianname:{
+        type:String,
+        default:null
     },
 
-    email: {
-        type: String,
-        required: true
+    email:{
+        type:String,
+        required:true
     },
 
-    category: {
-        type: String,
-        enum: [
+
+
+    /* ================= CATEGORY ================= */
+
+    category:{
+
+        type:String,
+
+        enum:[
             'OC',
             'BC-A',
             'BC-B',
             'BC-C',
             'BC-D',
+            'BC-E',
             'SC',
             'ST',
             'EWS'
         ],
+        required:true
     },
 
-    annualIncome: {
-        type: Number,
-    },
 
-    identificationMark1: {
-        type: String,
-    },
 
-    identificationMark2: {
-        type: String,
-    },
+    annualincome:Number,
 
-    address: {
-        type: String,
-    },
+    identificationmark1:String,
 
-    /* ================= EDUCATION DETAILS ================= */
+    identificationmark2:String,
 
-    education: {
+    fulladdress:String,
 
-        ssc: {
 
-            board: {
-                type: String,
-                default: ''
+
+    /* ================= EDUCATION ================= */
+
+    education:{
+
+        ssc:{
+
+            board:{
+                type:String,
+                default:null
             },
 
-            percentage: {
-                type: Number,
-                default: null
+            percentage:{
+                type:Number,
+                default:null
             }
-
+            
         },
 
-        intermediateOrDiploma: {
 
-            qualificationType: {
-                type: String,
-                enum: [
-                    'intermediate',
-                    'diploma',
-                    'none'
-                ],
-                default: 'none'
-            },
 
-            collegeName: {
-                type: String,
-                default: ''
-            },
+        intermediateOrDiploma:{
 
-            percentage: {
-                type: Number,
-                default: null
-            },
+            type:String,
 
-            passedOutYear: {
-                type: Number,
-                default: null
-            }
-
+            enum:[
+                'intermediate',
+                'diploma',
+                'none'
+            ],
+            default:'none'
         },
 
-        higherStudies: {
 
-            qualificationType: {
-                type: String,
-                enum: [
+
+        intermediate:{
+
+            collegename:{
+                type:String,
+                default:null
+            },
+
+            percentage:{
+                type:Number,
+                default:null
+            },
+
+            passedoutyear:{
+                type:Number,
+                default:null
+            }
+        },
+
+
+
+        diploma:{
+
+            collegename:{
+                type:String,
+                default:null
+            },
+
+            percentage:{
+                type:Number,
+                default:null
+            },
+
+            passedoutyear:{
+                type:Number,
+                default:null
+            }
+        },
+
+
+
+        higherStudies:{
+
+            stype:{
+
+                type:String,
+
+                enum:[
                     'degree',
                     'btech',
                     'mtech',
@@ -149,193 +224,98 @@ const ApplicationSchema = new mongoose.Schema({
                 default: 'none'
             },
 
-            otherQualification: {
-                type: String,
-                default: ''
+            specialotherstudy:{
+                type:String,
+                default:null
             },
 
-            collegeName: {
-                type: String,
-                default: ''
+            universityname:{
+                type:String,
+                default:null
             },
 
-            percentageOrCgpa: {
-                type: String,
-                default: ''
+            percentage:{
+                type:String,
+                default:null
             },
 
-            specialization: {
-                type: String,
-                default: ''
+            branch:{
+                type:String,
+                default:null
             },
 
-            passedOutYear: {
-                type: Number,
-                default: null
+            passedoutyear:{
+                type:Number,
+                default:null
             }
-
         }
 
     },
 
-    /* ================= EXPERIENCE DETAILS ================= */
 
-    experienceType: {
-        type: String,
-        enum: [
-            'fresher',
-            'experienced'
-        ],
-        default: 'fresher'
-    },
-
-    internships: [
-
-        {
-
-            organizationName: {
-                type: String,
-                default: ''
-            },
-
-            role: {
-                type: String,
-                default: ''
-            },
-
-            duration: {
-                type: String,
-                default: ''
-            },
-
-            stipend: {
-                type: Number,
-                default: null
-            },
-
-            joiningDate: {
-                type: Date,
-                default: null
-            },
-
-            endDate: {
-                type: Date,
-                default: null
-            },
-
-            skillsLearned: {
-                type: String,
-                default: ''
-            }
-
-        }
-
-    ],
-
-    experiences: [
-
-        {
-
-            organizationName: {
-                type: String,
-                default: ''
-            },
-
-            designation: {
-                type: String,
-                default: ''
-            },
-
-            totalExperience: {
-                type: String,
-                default: ''
-            },
-
-            currentSalary: {
-                type: Number,
-                default: null
-            },
-
-            joiningDate: {
-                type: Date,
-                default: null
-            },
-
-            relievingDate: {
-                type: Date,
-                default: null
-            },
-
-            employmentType: {
-                type: String,
-                enum: [
-                    'Full Time',
-                    'Contract',
-                    'Temporary',
-                    'Outsourcing'
-                ],
-                default: 'Full Time'
-            },
-
-            workLocation: {
-                type: String,
-                default: ''
-            },
-
-            rolesAndResponsibilities: {
-                type: String,
-                default: ''
-            }
-
-        }
-
-    ],
 
     /* ================= DOCUMENTS ================= */
 
-    documents: {
+    documents:{
 
-        identityProof: {
-            type: String,
-            default: ''
-        },
+        identityProof:String,
 
-        sscMarksMemo: {
-            type: String,
-            default: ''
-        },
+        sscMarksMemo:String,
 
-        recentExaminationMarksMemo: {
-            type: String,
-            default: ''
-        },
+        recentExaminationMarksMemo:String,
 
-        incomeCertificate: {
-            type: String,
-            default: ''
-        },
+        incomeCertificate:String,
 
-        casteCertificate: {
-            type: String,
-            default: ''
-        },
+        casteCertificate:String,
 
-        passportPhoto: {
-            type: String,
-            default: ''
-        },
+        passportPhoto:String,
 
-        signature: {
-            type: String,
-            default: ''
-        },
+        signature:String,
 
-        resume: {
-            type: String,
-            default: ''
-        }
+        resume:String
 
+    },
+
+
+
+    /* ================= STATUS ================= */
+
+    status:{
+
+        type:String,
+
+        enum:[
+            'pending',
+            'under_review',
+            'shortlisted',
+            'accepted',
+            'rejected'
+        ],
+
+        default:'pending'
+    },
+
+
+
+    adminMessage:String,
+
+
+
+    appliedAt:{
+
+        type:Date,
+
+        default:Date.now
     }
+
+},
+
+{
+    timestamps:true
 });
 
-module.exports =mongoose.model('Application',ApplicationSchema);
+module.exports =
+mongoose.model(
+    'Application',
+    applicationSchema
+);

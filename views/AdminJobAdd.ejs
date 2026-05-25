@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,6 +151,8 @@ body{
     font-size:15px;
 
     font-weight:bold;
+
+    text-decoration:none;
 }
 
 /* JOB FORM */
@@ -411,13 +414,6 @@ body{
 
         </a>
 
-        <a href="/admin/news">
-            📰 News
-        </a>
-
-        <a href="/admin/notifications">
-            🔔 Notifications
-        </a>
 
         <a href="/admin/applications">
             📄 Applications
@@ -454,147 +450,16 @@ body{
 
     </div>
 
-</div>
+    <a
+        href="/admin/jobadd"
+        class="add-btn">
 
+        ➕ Add Job
 
-
-<!-- ADD JOB -->
-
-<div class="job-form-box">
-
-    <h2 class="section-title">
-
-        Add New Job
-
-    </h2>
-
-
-    <form
-    action="/admin/add-job"
-    method="POST"
-    class="job-form">
-
-
-        <div class="form-group">
-
-            <label>
-                Job Title
-            </label>
-
-            <input
-            type="text"
-            name="title"
-            placeholder="Enter Job Title"
-            required>
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Qualification
-            </label>
-
-            <input
-            type="text"
-            name="qualification"
-            placeholder="Required Qualification"
-            required>
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Location
-            </label>
-
-            <input
-            type="text"
-            name="location"
-            placeholder="Job Location"
-            required>
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Last Date
-            </label>
-
-            <input
-            type="date"
-            name="lastDate"
-            required>
-
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label>
-                Status
-            </label>
-
-            <select
-            name="status"
-            required>
-
-                <option value="">
-                    Select Status
-                </option>
-
-                <option value="Active">
-                    Active
-                </option>
-
-                <option value="Closed">
-                    Closed
-                </option>
-
-            </select>
-
-        </div>
-
-
-
-        <div class="form-group full-width">
-
-            <label>
-                Job Description
-            </label>
-
-            <textarea
-            name="description"
-            placeholder="Enter full job description..."
-            required></textarea>
-
-        </div>
-
-
-
-        <div class="form-group full-width">
-
-            <button class="submit-btn">
-
-                Publish Job
-
-            </button>
-
-        </div>
-
-
-    </form>
+    </a>
 
 </div>
+
 
 
 
@@ -690,19 +555,21 @@ body{
                 <td>
 
                     <div class="action-buttons">
-
+                        <a href="/admin/jobedit/<%= job._id %>">
                         <button class="edit-btn">
 
                             Edit
 
-                        </button>
+                            </button>
+                        </a>
 
-
+                        <a href="/admin/jobdelete/<%= job._id %>">
                         <button class="delete-btn">
 
                             Delete
 
                         </button>
+                        </a>
 
                     </div>
 

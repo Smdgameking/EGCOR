@@ -545,6 +545,7 @@ button{
     <form id="multiForm" accept=".jpg,.png,.jpeg,.pdf" enctype="multipart/form-data" method="POST" action="/apply">
 
         <!-- STEP 1 -->
+        <input type="hidden" name="userId" value="<%= UserId %>">
         <input
             type="hidden"
             name="jobId"
@@ -762,7 +763,7 @@ button{
             </label>
 
             <input type="text"
-            placeholder="Board Name" name="sscboard">
+            placeholder="Board Name" name="sscboardName">
 
         </div>
 
@@ -785,7 +786,7 @@ button{
                 Intermediate / Diploma
             </label>
 
-            <select id="interType" name="intermediate/Diploma">
+            <select id="interType" name="InterORDip">
 
                 <option value="">
                     Select Qualification
@@ -822,7 +823,7 @@ button{
                     </label>
 
                     <input type="text"
-                    placeholder="Enter college name" name="intermediatecollegename">
+                    placeholder="Enter college name" name="InterCollegename">
 
                 </div>
 
@@ -833,7 +834,7 @@ button{
                     </label>
 
                     <input type="number"
-                    placeholder="Enter percentage" nme="interpercentage">
+                    placeholder="Enter percentage" name="InterPercentage">
 
                 </div>
 
@@ -844,7 +845,7 @@ button{
                     </label>
 
                     <input type="number"
-                    placeholder="2024" name="interpassedoutyear">
+                    placeholder="2024" name="InterPassedOutYear">
 
                 </div>
 
@@ -867,7 +868,7 @@ button{
                     </label>
 
                     <input type="text"
-                    placeholder="Enter college name" name="diplomcollegename" >
+                    placeholder="Enter college name" name="DipCollegename" >
 
                 </div>
 
@@ -878,7 +879,7 @@ button{
                     </label>
 
                     <input type="number"
-                    placeholder="Enter percentage" name="diplomapercentage">
+                    placeholder="Enter percentage" name="DipPercentage">
 
                 </div>
 
@@ -889,7 +890,7 @@ button{
                     </label>
 
                     <input type="number"
-                    placeholder="2024" name="diplomapassedoutyear">
+                    placeholder="2024" name="DipPassedOutYear">
 
                 </div>
 
@@ -988,7 +989,7 @@ style="display:none;">
                     </label>
 
                     <input type="text"
-                    placeholder="CSE / MBA Finance"name="branch">
+                    placeholder="CSE / MBA Finance" name="branch">
 
                 </div>
 
@@ -1045,7 +1046,7 @@ style="display:none;">
                 Applicant Type
             </label>
 
-            <select id="experienceType" name="applicanttype">
+            <select id="experienceType" name="ApplicantType">
 
                 <option value="">
                     Select
@@ -1073,7 +1074,7 @@ style="display:none;">
                 Do You Have Internship Experience ?
             </label>
 
-            <select id="internshipOption" name="experience">
+            <select id="internshipOption" name="Experience">
 
                 <option value="">
                     Select
@@ -1107,7 +1108,7 @@ style="display:none;">
 			id="internshipCompanyCount"
 			min="1"
 			max="5"
-			placeholder="Max 5 companies" name="noofinternshipcompanies">
+			placeholder="Max 5 companies" name="NoOfInternshipCompanies">
 		</div>
 
 		<!-- INTERNSHIP COMPANY NAMES -->
@@ -1133,7 +1134,7 @@ style="display:none;">
 			id="companyCount"
 			min="1"
 			max="5"
-			placeholder="Max 5 companies" name="noofcompaniesworked">
+			placeholder="Max 5 companies" name="NoOfCompaniesWorked">
 		</div>		
 
 		<!-- COMPANY NAME FIELDS -->
@@ -1677,37 +1678,37 @@ companyCount.addEventListener('input', function () {
 
             <div class="form-group">
                 <label>Organization Name ${i + 1}</label>
-                <input type="text" value="${data.org}">
+                <input type="text" value="${data.org}" name="organizationName${i + 1}">
             </div>
 
             <div class="form-group">
                 <label>Designation</label>
-                <input type="text" value="${data.des}">
+                <input type="text" value="${data.des}" name="designation${i + 1}">
             </div>
 
             <div class="form-group">
                 <label>Total Experience</label>
-                <input type="text" value="${data.exp}">
+                <input type="text" value="${data.exp}" name="totalExperience${i + 1}">
             </div>
 
             <div class="form-group">
                 <label>Current Salary</label>
-                <input type="number" value="${data.sal}">
+                <input type="number" value="${data.sal}" name="currentSalary${i + 1}">
             </div>
 
             <div class="form-group">
                 <label>Joining Date</label>
-                <input type="date" value="${data.join}">
+                <input type="date" value="${data.join}" name="joiningDate${i + 1}">
             </div>
 
             <div class="form-group">
                 <label>Relieving Date</label>
-                <input type="date" value="${data.rel}">
+                <input type="date" value="${data.rel}" name="relievingDate${i + 1}">
             </div>
 
             <div class="form-group">
                 <label>Employment Type</label>
-                <select>
+                <select name="Employment${i + 1}">
     		<option ${data.type === 'Full Time' ? 'selected' : ''}>Full Time</option>
     		<option ${data.type === 'Contract' ? 'selected' : ''}>Contract</option>
     		<option ${data.type === 'Temporary' ? 'selected' : ''}>Temporary</option>
@@ -1717,12 +1718,12 @@ companyCount.addEventListener('input', function () {
 
             <div class="form-group">
                 <label>Work Location</label>
-                <input type="text" value="${data.loc}">
+                <input type="text" value="${data.loc}" name="workLocation${i + 1}">
             </div>
 
             <div class="form-group full-width">
-                <label>Roles & Responsibilities</label>
-                <textarea>${data.role}</textarea>
+                <label>Role</label>
+                <textarea name="role${i + 1}">${data.role}</textarea>
             </div>
 
         </div>`;
@@ -1766,7 +1767,8 @@ function(){
                 </label>
 
                 <input type="text"
-                placeholder="Enter organization name">
+                placeholder="Enter organization name"
+                name="internshipOrganization${i}">
 
             </div>
 
@@ -1777,7 +1779,8 @@ function(){
                 </label>
 
                 <input type="text"
-                placeholder="Data Entry Intern">
+                placeholder="Data Entry Intern"
+                name="internshipRole${i}">
 
             </div>
 
@@ -1787,7 +1790,7 @@ function(){
                     Internship Duration
                 </label>
 
-                <select>
+                <select name="internshipDuration${i}">
 
                     <option value="">
                         Select Duration
@@ -1824,7 +1827,8 @@ function(){
                 </label>
 
                 <input type="number"
-                placeholder="Enter stipend amount(Optional)">
+                placeholder="Enter stipend amount(Optional)"
+                name="internshipStipend${i}">
 
             </div>
 
@@ -1834,7 +1838,8 @@ function(){
                     Internship Joining Date
                 </label>
 
-                <input type="date">
+                <input type="date"
+                name="internshipJoiningDate${i}">
 
             </div>
 
@@ -1844,7 +1849,8 @@ function(){
                     Internship End Date
                 </label>
 
-                <input type="date">
+                <input type="date"
+                name="internshipEndingDate${i}">
 
             </div>
 
@@ -1855,9 +1861,8 @@ function(){
                 </label>
 
                 <textarea
-                placeholder=
-                "Describe skills learned during internship">
-                </textarea>
+                name="internshipSkillsLearned${i}"
+                placeholder="Describe skills learned during internship"></textarea>
 
             </div>
 

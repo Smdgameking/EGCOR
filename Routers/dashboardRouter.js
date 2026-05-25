@@ -4,15 +4,17 @@ const router = express.Router();
 
 const isLoggedIn = require('../middlewares/isLoggedIn');
 
+const Job = require('../models/Jobs');
+
 
 
 router.get(
 
 '/dashboard',
 
-(req, res)=>{
+async (req, res)=>{
 
-
+    const job = await Job.find();
     res.render(
 
     'Userdashboard',
@@ -27,99 +29,7 @@ router.get(
         :
         null,
 
-
-
-        totalApplications: 10,
-
-
-
-        totalNotifications: 5,
-
-
-
-        latestNotification: {
-
-            title:
-
-            'New Recruitment Released',
-
-
-            message:
-
-            'Village Revenue Officer applications started.'
-
-        },
-
-
-
-        news: [
-
-            {
-
-                title:
-
-                'Hall Tickets Released',
-
-
-                category:
-
-                'Exam',
-
-
-                description:
-
-                'Junior Assistant hall tickets officially released.',
-
-
-                date:
-
-                '20 May 2026'
-
-            }
-
-        ],
-
-
-
-        jobs: [
-
-            {
-
-                _id: 1,
-
-                title:
-
-                'Junior Assistant',
-
-
-                status:
-
-                'Active',
-
-
-                description:
-
-                'Government office role.',
-
-
-                qualification:
-
-                'Degree',
-
-
-                lastDate:
-
-                '25 June 2026',
-
-
-                location:
-
-                'Hyderabad'
-
-            }
-
-        ]
-
+        jobs: job
     }
 
 );
