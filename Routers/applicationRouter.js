@@ -22,6 +22,16 @@ require('../models/InternShip');
 const isLoggedIn =
 require('../middlewares/isLoggedIn');
 
+function renderApplicationError(res, error) {
+  res.status(500).render('ErrorPage', {
+    title: 'Application Submission Failed',
+    message: 'We could not submit your application right now. Please review the form, then try again.',
+    details: error.message || 'Unexpected error during application submission.',
+    backUrl: '/dashboard'
+  });
+}
+
+
 
 
 
@@ -492,9 +502,7 @@ async(req,res)=>{
 
         console.log(error);
 
-        res.send(
-            'Application Submission Failed'
-        );
+        renderApplicationError(res, error);
 
     }
 

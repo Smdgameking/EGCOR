@@ -1,12 +1,6 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const svgcaptcha = require('svg-captcha');
-const session = require('express-session');
-router.use(session({
-  secret: "egcorsecret",
-  resave: false,
-  saveUninitialized: true
-}));
 
 router.get('/captcha', (req,res)=>{
   const captcha = svgcaptcha.create({

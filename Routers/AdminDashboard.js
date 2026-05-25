@@ -456,74 +456,74 @@ router.get('/jobadd', isLoggedIn, async (req, res) => {
 
 
 router.post('/add-job', isLoggedIn, async (req, res) => {
-    const lastJob = await Job.findOne().sort({id:-1});
+    try {
+        const lastJob = await Job.findOne().sort({id:-1});
 
-    let newId = 1;
+        let newId = 1;
 
         if(lastJob){
-
             newId =
             lastJob.id + 1;
-
         }
 
-    await Job.create({
-
+        await Job.create({
             id:newId,
-
             title:
             req.body.title,
-
             qualification:
             req.body.qualification,
-
             location:
             req.body.location,
-
             lastDate:
             req.body.lastDate,
-
             status:
             req.body.status,
-
             description:
             req.body.description
+        });
 
-    });
-
-    res.redirect('/admin/jobs');
+        res.redirect('/admin/jobs');
+    } catch(error) {
+        console.log(error);
+        res.status(500).render('ErrorPage', {
+            title: 'Job Creation Failed',
+            message: 'Unable to create the job posting at this time. Please try again.',
+            details: error.message || 'Unexpected error during job creation.',
+            backUrl: '/admin/jobadd'
+        });
+    }
 })
 
 
 router.post('/jobs/update/:id', isLoggedIn, async (req, res) => {
+    try {
+        await Job.findOneAndUpdate(
+            { _id: req.params.id },
+             {
+                title:
+                req.body.title,
+                qualification:
+                req.body.qualification,
+                location:
+                req.body.location,
+                lastDate:
+                req.body.lastDate,
+                status:
+                req.body.status,
+                description:
+                req.body.description
+        });
 
-    await Job.findOneAndUpdate(
-
-        { _id: req.params.id },
-
-         {
-
-            title:
-            req.body.title,
-
-            qualification:
-            req.body.qualification,
-
-            location:
-            req.body.location,
-
-            lastDate:
-            req.body.lastDate,
-
-            status:
-            req.body.status,
-
-            description:
-            req.body.description
-
-    });
-
-    res.redirect('/admin/jobs');
+        res.redirect('/admin/jobs');
+    } catch(error) {
+        console.log(error);
+        res.status(500).render('ErrorPage', {
+            title: 'Job Update Failed',
+            message: 'Unable to update the job posting right now. Please try again.',
+            details: error.message || 'Unexpected error during job update.',
+            backUrl: req.get('referer') || '/admin/jobs'
+        });
+    }
 })
 
 
@@ -533,9 +533,27 @@ router.get('/jobedit/:id', isLoggedIn, async (req, res) => {
 });
 
 router.get('/jobdelete/:id', isLoggedIn, async (req, res) => {
-    await Job.findByIdAndDelete(req.params.id);
-    res.redirect('/admin/jobs');
+    try {
+        await Job.findByIdAndDelete(req.params.id);
+        res.redirect('/admin/jobs');
+    } catch(error) {
+        console.log(error);
+        res.status(500).render('ErrorPage', {
+            title: 'Job Deletion Failed',
+            message: 'Unable to delete the job posting right now. Please try again.',
+            details: error.message || 'Unexpected error during job deletion.',
+            backUrl: req.get('referer') || '/admin/jobs'
+        });
+    }
 });
 
+router.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error(err);
+    }
+    res.redirect('/auth');
+  });
+});
 
 module.exports = router;

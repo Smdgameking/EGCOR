@@ -1,13 +1,7 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const session = require('express-session');
-router.use(session({
-  secret: "egcorsecret",
-  resave: false,
-  saveUninitialized: true
-}));
 router.get('/auth', (req, res) => {
   res.render('Auth', {
     activeTab: req.query.tab || 'login',
