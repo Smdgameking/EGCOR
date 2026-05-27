@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const newsSchema = new mongoose.Schema({
+const jobSchema = new mongoose.Schema({
     id: {
         type: Number,
         required: true,
@@ -32,4 +32,4 @@ const newsSchema = new mongoose.Schema({
     }
 });
 
-module.exports = newsSchema;
+module.exports = mongoose.model('Job', jobSchema);

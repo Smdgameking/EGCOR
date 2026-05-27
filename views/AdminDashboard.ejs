@@ -1,6 +1,4 @@
-# AdminDashboard.ejs
 
-```ejs
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -416,15 +414,7 @@ body{
         </a>
 
         <a href="/admin/jobs">
-            💼 Manage Jobs
-        </a>
-
-        <a href="/admin/news">
-            📰 News
-        </a>
-
-        <a href="/admin/notifications">
-            🔔 Notifications
+            💼Jobs
         </a>
 
         <a href="/admin/applications">
@@ -464,7 +454,6 @@ body{
 
     <div class="admin-profile">
 
-        <img src="https://i.pravatar.cc/100">
 
         <div>
             <strong>
@@ -588,225 +577,6 @@ body{
 </div>
 
 
-<!-- QUICK ACTIONS -->
-
-<h2 class="section-title">
-    Quick Actions
-</h2>
-
-<div class="quick-actions">
-
-
-    <div class="action-card">
-
-        <h3>
-            Add New Job
-        </h3>
-
-        <p>
-            Create new recruitment notifications and publish jobs instantly.
-        </p>
-
-        <a href="/admin/add-job" class="action-btn">
-            + Add Job
-        </a>
-
-    </div>
-
-
-    <div class="action-card">
-
-        <h3>
-            Add News
-        </h3>
-
-        <p>
-            Publish latest recruitment news and important updates.
-        </p>
-
-        <a href="/admin/add-news" class="action-btn">
-            + Add News
-        </a>
-
-    </div>
-
-
-    <div class="action-card">
-
-        <h3>
-            Add Notification
-        </h3>
-
-        <p>
-            Send announcements and updates to all users.
-        </p>
-
-        <a href="/admin/add-notification" class="action-btn">
-            + Add Notification
-        </a>
-
-    </div>
-
-
-</div>
-
-
-<!-- APPLICATIONS -->
-
-<h2 class="section-title">
-    Recent Applications
-</h2>
-
-<div class="table-box">
-
-
-    <div class="table-header">
-
-        <h3>
-            Applications
-        </h3>
-
-        <input
-        type="text"
-        class="search-box"
-        placeholder="Search applications...">
-
-    </div>
-
-
-    <table class="table">
-
-        <thead>
-
-            <tr>
-
-                <th>
-                    Name
-                </th>
-
-                <th>
-                    Email
-                </th>
-
-                <th>
-                    Job
-                </th>
-
-                <th>
-                    Status
-                </th>
-
-                <th>
-                    Action
-                </th>
-
-            </tr>
-
-        </thead>
-
-
-        <tbody>
-
-            <% applications.forEach(application => { %>
-
-            <tr>
-
-                <td>
-                    <%= application.fullname %>
-                </td>
-
-                <td>
-                    <%= application.email %>
-                </td>
-
-                <td>
-                    <%= application.jobTitle %>
-                </td>
-
-                <td>
-
-                    <span class="status <%= application.status.toLowerCase() %>">
-
-                        <%= application.status %>
-
-                    </span>
-
-                </td>
-
-                <td>
-
-                    <a
-                    href="/admin/application/<%= application._id %>"
-                    class="view-btn">
-
-                        View
-
-                    </a>
-
-                </td>
-
-            </tr>
-
-            <% }) %>
-
-        </tbody>
-
-    </table>
-
-</div>
-
-
-<!-- NEWS -->
-
-<h2 class="section-title" style="margin-top:40px;">
-    Latest News
-</h2>
-
-<div class="news-grid">
-
-
-    <% news.forEach(singleNews => { %>
-
-    <div class="news-card">
-
-
-        <div class="news-top">
-
-            <h3>
-                <%= singleNews.title %>
-            </h3>
-
-            <div class="news-badge">
-                <%= singleNews.category %>
-            </div>
-
-        </div>
-
-
-        <p>
-            <%= singleNews.description %>
-        </p>
-
-
-        <div class="news-actions">
-
-            <button class="edit-btn">
-                Edit
-            </button>
-
-            <button class="delete-btn">
-                Delete
-            </button>
-
-        </div>
-
-
-    </div>
-
-    <% }) %>
-
-
-</div>
 
 
 </div>

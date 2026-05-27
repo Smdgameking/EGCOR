@@ -237,27 +237,7 @@ body{
 
 
 
-/* ERROR BOX */
 
-#errorBox{
-
-    display: none;
-
-    background: #fee2e2;
-
-    color: #dc2626;
-
-    padding: 12px;
-
-    border-radius: 10px;
-
-    margin-bottom: 18px;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-}
 
 
 
@@ -563,6 +543,49 @@ form{
 
 }
 
+.alert-popup{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: #f8d7da;
+    color: #842029;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.25s ease;
+}
+
+.alert-popup.visible{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.alert-popup.success{
+    background: #d1e7dd;
+    color: #0f5132;
+    border-color: #badbcc;
+}
+
+.alert-popup.warning{
+    background: #fff3cd;
+    color: #664d03;
+    border-color: #ffecb5;
+}
+
+.alert-popup.error{
+    background: #f8d7da;
+    color: #842029;
+    border-color: #f5c2c7;
+}
+
+.alert-popup .alert-icon{
+    font-size: 18px;
+}
 
 
 /* RESPONSIVE */
@@ -630,6 +653,7 @@ form{
 
 }
 
+
 </style>
 
 </head>
@@ -654,22 +678,21 @@ form{
 
         <h1>
 
-            Collector Office
-            Recruitment Portal
+            East Godavari Collector Office Portal
 
         </h1>
 
         <p>
 
             Official government recruitment portal
-            for applications, hall tickets,
-            results and recruitment management.
+            for applications, hall tickets and
+            results management.
 
         </p>
 
         <div class="portal-tag">
 
-            Recruitment Portal 2026
+            EGCOR Portal 2026
 
         </div>
 
@@ -688,6 +711,10 @@ form{
 
         <div class="auth-box">
 
+            <div id="alertBox" class="alert-popup" role="alert">
+                <span id="alertIcon" class="alert-icon">❌</span>
+                <span id="alertText"></span>
+            </div>
 
             <!-- TABS -->
 
@@ -715,10 +742,6 @@ form{
 
 
 
-            <!-- ERROR BOX -->
-
-
-            <div id="errorBox"></div>
 
 
 
@@ -1632,9 +1655,43 @@ registerForm.addEventListener(
 
 });
 
+function showPopup(message, type = 'error'){
+    const alertBox = document.getElementById('alertBox');
+    const alertText = document.getElementById('alertText');
+    const alertIcon = document.getElementById('alertIcon');
+
+    alertText.textContent = message;
+    alertIcon.textContent = type === 'success' ? '✅' : type === 'warning' ? '⚠️' : '❌';
+
+    alertBox.classList.remove('success', 'warning', 'error');
+    alertBox.classList.add(type);
+    alertBox.classList.add('visible');
+
+    setTimeout(() => {
+        alertBox.classList.remove('visible');
+    }, 6000);
+}
+
+const AUTH_MESSAGE = <%- JSON.stringify(alertMessage || '') %>;
+const AUTH_TYPE = <%- JSON.stringify(alertType || 'error') %>;
+const AUTH_TAB = <%- JSON.stringify(activeTab || 'login') %>;
+
+window.addEventListener('DOMContentLoaded', () => {
+    if (AUTH_TAB === 'register') {
+        showRegister();
+    } else {
+        showLogin();
+    }
+
+    if (AUTH_MESSAGE) {
+        showPopup(AUTH_MESSAGE, AUTH_TYPE);
+    }
+});
+
+
 </script>
 
 
-</body>
 
+</body>
 </html>

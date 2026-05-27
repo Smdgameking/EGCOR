@@ -1,282 +1,808 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AP Recruitment Admin Dashboard</title>
+<title>Admin Applications</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f4f6f9;padding:20px}
-.container{max-width:1300px;margin:auto}
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
-.header h1{color:#222}
-.add-btn{background:#111;color:white;border:none;padding:12px 18px;border-radius:10px;cursor:pointer}
-.table-box{background:white;padding:20px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-.table-box h2{margin-bottom:20px}
-table{width:100%;border-collapse:collapse}
-th,td{padding:15px;border-bottom:1px solid #ddd;text-align:left}
-th{background:#f8fafc}
-.view-btn{background:#2563eb;color:white;border:none;padding:10px 15px;border-radius:8px;cursor:pointer}
-.status{padding:6px 12px;border-radius:20px;background:#e5e7eb}
-.pending{background:#fef3c7;color:#92400e}
-.accepted{background:#bbf7d0;color:#166534}
-.rejected{background:#fecaca;color:#991b1b}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;justify-content:center;align-items:center}
-.modal-content{width:97%;max-width:1400px;height:95vh;background:white;border-radius:15px;overflow-y:auto;padding:25px}
-.menu-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
-.tab-btn{background:#e5e7eb;border:none;padding:12px 18px;border-radius:8px;cursor:pointer}
-.active-tab{background:black;color:white}
-.tab-content{display:none}
-.active-content{display:block}
-.view-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.form-group{display:flex;flex-direction:column}
-.full-width{grid-column:1/-1}
-.form-group label{margin-bottom:8px;font-weight:bold}
-.form-group input,.form-group textarea,.form-group select{padding:12px;border:1px solid #ccc;border-radius:10px;background:#f9fafb}
-.form-group textarea{resize:none;height:100px}
-.experience-card{grid-column:1/-1;background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px}
-.experience-card h3{margin-bottom:15px;font-size:18px;color:#111827}
-.experience-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.files{margin-top:20px}
-.file-box{background:#f3f4f6;border:1px solid #ddd;padding:12px;border-radius:10px;margin-bottom:12px}
-.documents-container{display:flex;flex-direction:column;gap:25px}
-.button-group{display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;margin-top:20px}
-.tab-navigation{display:flex;justify-content:center;gap:10px;margin-top:25px}
-.nav-btn,.accept-btn,.reject-btn,.close-btn{color:white;border:none;padding:12px 18px;border-radius:8px;cursor:pointer}
-.nav-btn,.close-btn{background:#111}
-.accept-btn{background:green}
-.reject-btn{background:#dc2626}
-@media(max-width:768px){.header{flex-direction:column;align-items:flex-start;gap:15px}}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#111827;
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:280px;
+    background:linear-gradient(180deg,#1e3a8a,#2563eb);
+    color:white;
+    padding:25px;
+    position:sticky;
+    top:0;
+    height:100vh;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.logo-icon{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    background:rgba(255,255,255,0.15);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+}
+
+.sidebar-links{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.sidebar-links a{
+    text-decoration:none;
+    color:white;
+    padding:14px 16px;
+    border-radius:12px;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.sidebar-links a:hover,
+.active-link{
+    background:rgba(255,255,255,0.18);
+}
+
+/* MAIN */
+
+.main{
+    flex:1;
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.topbar h1{
+    font-size:34px;
+}
+
+.topbar p{
+    color:#64748b;
+    margin-top:8px;
+}
+
+/* TABLE */
+
+.table-box{
+    background:white;
+    border-radius:24px;
+    padding:25px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.06);
+}
+
+.table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.table th,
+.table td{
+    padding:16px;
+    border-bottom:1px solid #e5e7eb;
+    text-align:left;
+}
+
+.table th{
+    background:#f8fafc;
+}
+
+.status{
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.pending{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.accepted{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.rejected{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.review{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+.view-btn{
+    border:none;
+    background:#2563eb;
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+    cursor:pointer;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    padding:20px;
+}
+
+.modal-content{
+    width:100%;
+    max-width:1400px;
+    max-height:95vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:24px;
+    padding:30px;
+}
+
+.tab-buttons{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.tab-btn{
+    border:none;
+    padding:12px 18px;
+    border-radius:12px;
+    background:#e5e7eb;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.active-tab{
+    background:#2563eb;
+    color:white;
+}
+
+.tab-content{
+    display:none;
+}
+
+.active-content{
+    display:block;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.full-width{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.data-box{
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #d1d5db;
+    background:#f8fafc;
+    min-height:50px;
+}
+
+.card{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    margin-bottom:20px;
+}
+
+.document-box{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    padding:16px;
+    margin-bottom:15px;
+}
+
+.document-actions{
+    display:flex;
+    gap:10px;
+}
+
+.preview-btn,
+.download-btn{
+    text-decoration:none;
+    color:white;
+    padding:10px 14px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.preview-btn{
+    background:#2563eb;
+}
+
+.download-btn{
+    background:#059669;
+}
+
+.bottom-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.accept-btn,
+.reject-btn,
+.close-btn{
+    border:none;
+    color:white;
+    padding:14px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.accept-btn{
+    background:#059669;
+}
+
+.reject-btn{
+    background:#dc2626;
+}
+
+.close-btn{
+    background:#111827;
+}
+
+@media(max-width:1000px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+
+}
+
 </style>
 </head>
 <body>
+
 <div class="container">
-<div class="header">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<div class="logo-icon">
+🏛️
+</div>
+
+<h2>
+Admin Panel
+</h2>
+
+</div>
+
+<div class="sidebar-links">
+
+<a href="/admin/dashboard">
+📊 Dashboard
+</a>
+
+<a href="/admin/jobs">
+💼 Jobs
+</a>
+
+<a href="/admin/applications" class="active-link">
+📄 Applications
+</a>
+
+<a href="/logout">
+🚪 Logout
+</a>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<div class="topbar">
+
 <div>
-<h1>AP Recruitment Admin Dashboard</h1>
-<p>View and validate candidate applications</p>
+<h1>
+Manage Applications 📄
+</h1>
+
+<p>
+Review, verify and manage candidate applications.
+</p>
 </div>
-<button class="add-btn">+ Add Job</button>
+
 </div>
+
 <div class="table-box">
-<h2>Applications</h2>
-<table>
+
+<table class="table">
+
 <thead>
 <tr>
-<th>Name</th>
+<th>Candidate</th>
 <th>Email</th>
-<th>Role</th>
 <th>Status</th>
 <th>Action</th>
 </tr>
 </thead>
+
 <tbody>
+
+<% applications.forEach(application => { %>
+
 <tr>
-<td>Rahul Sharma</td>
-<td>rahul@gmail.com</td>
-<td>Frontend Developer</td>
-<td><span class="status pending" id="status1">Pending</span></td>
-<td><button class="view-btn" onclick="openApplication('status1')">View Application</button></td>
+
+<td>
+<%= application.fullname %>
+</td>
+
+<td>
+<%= application.email %>
+</td>
+
+
+<td>
+
+<span class="status <%= application.status === 'pending' ? 'pending' : application.status === 'accepted' ? 'accepted' : application.status === 'rejected' ? 'rejected' : 'review' %>">
+
+<%= application.status %>
+
+</span>
+
+</td>
+
+<td>
+
+<a href="/admin/application/<%= application._id %>" class="view-btn">
+View
+</a>
+
+</td>
+
 </tr>
+
+<% }) %>
+
 </tbody>
+
 </table>
+
 </div>
+
 </div>
-<div class="modal" id="applicationModal">
+
+</div>
+
+
+<% if(singleApplication){ %>
+
+<div class="modal">
+
 <div class="modal-content">
-<div class="menu-tabs">
-<button class="tab-btn active-tab" onclick="showTab(event,'basic')">General</button>
-<button class="tab-btn" onclick="showTab(event,'education')">Education</button>
-<button class="tab-btn" onclick="showTab(event,'experience')">Experience</button>
-<button class="tab-btn" onclick="showTab(event,'documents')">Documents</button>
+
+<div class="tab-buttons">
+
+<button class="tab-btn active-tab" onclick="openTab(event,'general')">
+General
+</button>
+
+<button class="tab-btn" onclick="openTab(event,'education')">
+Education
+</button>
+
+<button class="tab-btn" onclick="openTab(event,'experience')">
+Experience
+</button>
+
+<button class="tab-btn" onclick="openTab(event,'documents')">
+Documents
+</button>
+
 </div>
-<div class="tab-content active-content" id="basic">
-<h2>General Details</h2>
-<div class="view-form">
-<div class="form-group"><label>Full Name</label><%= Application.fullname %></div>
-<div class="form-group"><label>Aadhaar Number</label><%= Application.adhaarno %></div>
-<div class="form-group"><label>Mobile Number</label><%= Application.mobileno % ></div>
-<div class="form-group"><label>Gender</label><%= Application.gender %></div>
-<div class="form-group"><label>Parent Status</label><%=Application.parentsts %></div>
-<div class="form-group"><label>Father Name</label><%= Application.fathername></div>
-<div class="form-group"><label>Mother Name</label><%= Application.mothername></div>
-<div class="form-group"><label>Email</label><%= Application.email %></div>
-<div class="form-group"><label>Category</label><%= Application.Category></div>
-<div class="form-group"><label>Annual Income</label><%= Application.Annualincome></div>
-<div class="form-group"><label>Identification Mark 1</label><%=  Application.idtmark1%></div>
-<div class="form-group"><label>Identification Mark 2</label><%= Application.idtmark2%></div>
-<div class="form-group full-width"><label>Full Address</label><%=Application.address%></div>
-</div>
-<div class="tab-navigation">
-<button class="nav-btn" onclick="prevTab()">Back</button>
-<button class="nav-btn" onclick="nextTab()">Next</button>
-</div>
-</div>
-<div class="tab-content" id="education">
-<h2>Education Details</h2>
-<div class="view-form">
-<div class="form-group"><label>SSC Board</label><%=Application.sscboard%></div>
-<div class="form-group"><label>SSC Percentage</label><%=Application.sscpercentage %></div>
-<div class="form-group"><label>Intermediate /Diploma college</label><%=Application.college %></div>
-<div class="form-group"><label>Intermediate/ Diploma Percentage</label><%=Application.clgpercentage %></div>
-<div class="form-group"><label>Passed Out Year</label><%=Application.year %></div>
-<div class="form-group"><label>Higher Studies</label><%=Application.higherstudies %></div>
-<div class="form-group"><label>University</label><%=Application.university %></div>
-<div class="form-group"><label>Specialization</label><%=Application. specialization %></div>
-<div class="form-group"><label>CGPA</label><%=Application. cgpa %></div>
-<div class="form-group"><label>Graduation Year</label><%=Application.gyear %></div>
-</div>
-<div class="tab-navigation">
-<button class="nav-btn" onclick="prevTab()">Back</button>
-<button class="nav-btn" onclick="nextTab()">Next</button>
-</div>
-</div>
-<div class="tab-content" id="experience">
-<h2>Experience Details</h2>
-<div class="view-form">
+
+<!-- GENERAL -->
+
+<div class="tab-content active-content" id="general">
+
+<div class="form-grid">
+
 <div class="form-group">
-<label>Number of Organizations Worked</label>
-<%=Application.noorganisation %>
-</div>
-<button onclick="renderExperienceForms()" class="nav-btn">experience</button>
-<div id="experienceForms" class="full-width"></div>
-</div>
-<div class="tab-navigation">
-<button class="nav-btn" onclick="prevTab()">Back</button>
-<button class="nav-btn" onclick="nextTab()">Next</button>
+<label>Full Name</label>
+<div class="data-box">
+<%= singleApplication.fullname %>
 </div>
 </div>
 
+<div class="form-group">
+<label>Email</label>
+<div class="data-box">
+<%= singleApplication.email %>
+</div>
+</div>
 
+<div class="form-group">
+<label>Mobile</label>
+<div class="data-box">
+<%= singleApplication.mobileno %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Gender</label>
+<div class="data-box">
+<%= singleApplication.gender %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Category</label>
+<div class="data-box">
+<%= singleApplication.category %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Income</label>
+<div class="data-box">
+<%= singleApplication.annualincome %>
+</div>
+</div>
+
+<div class="form-group full-width">
+<label>Address</label>
+<div class="data-box">
+<%= singleApplication.fulladdress %>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- EDUCATION -->
+
+<div class="tab-content" id="education">
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>SSC Board</label>
+<div class="data-box">
+<%= singleApplication.education.ssc.board %>
+</div>
+</div>
+
+<div class="form-group">
+<label>SSC Percentage</label>
+<div class="data-box">
+<%= singleApplication.education.ssc.percentage %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Intermediate / Diploma</label>
+<div class="data-box">
+<%= singleApplication.education.intermediateOrDiploma %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Higher Studies</label>
+<div class="data-box">
+<%= singleApplication.education.higherStudies.stype %>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- EXPERIENCE -->
+
+<div class="tab-content" id="experience">
+
+<h2 style="margin-bottom:20px;">
+Companies
+</h2>
+
+<% companies.forEach(company => { %>
+
+<div class="card">
+
+<h3>
+<%= company.organization %>
+</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Designation</label>
+<div class="data-box">
+<%= company.designation %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Total Experience</label>
+<div class="data-box">
+<%= company.totalExperience %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Employment Type</label>
+<div class="data-box">
+<%= company.employmentType %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Location</label>
+<div class="data-box">
+<%= company.location %>
+</div>
+</div>
+
+<div class="form-group full-width">
+<label>Roles & Responsibilities</label>
+<div class="data-box">
+<%= company.rolesResponsibilities %>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<% }) %>
+
+
+<h2 style="margin:30px 0 20px 0;">
+Internships
+</h2>
+
+<% internships.forEach(internship => { %>
+
+<div class="card">
+
+<h3>
+<%= internship.organization %>
+</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Role</label>
+<div class="data-box">
+<%= internship.role %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Duration</label>
+<div class="data-box">
+<%= internship.duration %>
+</div>
+</div>
+
+<div class="form-group">
+<label>Stipend</label>
+<div class="data-box">
+<%= internship.stipend %>
+</div>
+</div>
+
+<div class="form-group full-width">
+<label>Skills Learned</label>
+<div class="data-box">
+<%= internship.skillsLearned %>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<% }) %>
+
+</div>
+
+<!-- DOCUMENTS -->
 
 <div class="tab-content" id="documents">
-<h2>Uploaded Documents</h2>
-<div class="documents-container">
-<div class="files">
-<div class="file-box">%=Application.Passport Photo.png%</div>
-<div class="file-box">%=Application.Signature.png%</div>
-<div class="file-box">%=Application.Aadhar Card.pdf%</div>
-<div class="file-box">%=Application.Income Certificate.pdf%</div>
-<div class="file-box">%=Application.Caste Certificate.pdf %</div>
-<div class="file-box">%=Application.SSC Certificate.pdf %</div>
-<div class="file-box">%=Application.Intermediate Certificate.pdf %</div>
-<div class="file-box">%=Application.Degree Certificate.pdf %</div>
-<div class="file-box">%=Application.B.Tech Certificate.pdf %</div>
-<div class="file-box">%=Application.Resume.pdf %</div>
+
+<% Object.entries(singleApplication.documents).forEach(doc => { %>
+
+<% if(doc[1]){ %>
+
+<div class="document-box">
+
+<div>
+<strong>
+<%= doc[0] %>
+</strong>
 </div>
-<div class="button-group">
-<button class="accept-btn" onclick="acceptApplication()">Accept Application</button>
-<button class="reject-btn" onclick="rejectApplication()">Reject Application</button>
-<button class="close-btn" onclick="closeModal()">Close</button>
+
+<div class="document-actions">
+
+<!-- PREVIEW -->
+
+<a
+href="/admin/preview/<%= doc[1].replace('uploads/','') %>"
+target="_blank"
+class="preview-btn">
+
+Preview
+
+</a>
+
+
+
+<!-- DOWNLOAD -->
+
+<a
+href="/admin/download/<%= doc[1].replace('uploads/','') %>"
+class="download-btn">
+
+Download
+
+</a>
+
 </div>
+
 </div>
+
+<% } %>
+
+<% }) %>
+
 </div>
+
+
+<div class="bottom-buttons">
+
+<form action="/admin/application/accept/<%= singleApplication._id %>" method="POST">
+<button class="accept-btn">
+Accept
+</button>
+</form>
+
+<form action="/admin/application/reject/<%= singleApplication._id %>" method="POST">
+<button class="reject-btn">
+Reject
+</button>
+</form>
+
+<button class="close-btn" onclick="window.location.href='/admin/applications'">
+Close
+</button>
+
 </div>
+
 </div>
+
+</div>
+
+<% } %>
+
 <script>
-let currentStatusId = '';
-const tabIds = ['basic','education','experience','documents'];
 
-function openApplication(statusId){
-    currentStatusId = statusId;
-    document.getElementById('applicationModal').style.display = 'flex';
+function openTab(event,tabId){
+
+   document
+   .querySelectorAll('.tab-content')
+   .forEach(content => {
+
+      content.classList.remove('active-content');
+
+   });
+
+
+   document
+   .querySelectorAll('.tab-btn')
+   .forEach(button => {
+
+      button.classList.remove('active-tab');
+
+   });
+
+
+   document
+   .getElementById(tabId)
+   .classList
+   .add('active-content');
+
+
+   event.target.classList.add('active-tab');
+
 }
 
-function closeModal(){
-    document.getElementById('applicationModal').style.display = 'none';
-}
-
-function showTab(event,tabId){
-    switchTab(tabId);
-    event.target.classList.add('active-tab');
-}
-
-function acceptApplication(){
-    document.getElementById(currentStatusId).innerHTML = 'Accepted';
-    document.getElementById(currentStatusId).classList.remove('pending','rejected');
-    document.getElementById(currentStatusId).classList.add('accepted');
-    alert('Application Accepted Successfully');
-    closeModal();
-}
-
-function rejectApplication(){
-    document.getElementById(currentStatusId).innerHTML = 'Rejected';
-    document.getElementById(currentStatusId).classList.remove('pending','accepted');
-    document.getElementById(currentStatusId).classList.add('rejected');
-    alert('Application Rejected');
-    closeModal();
-}
-
-function nextTab(){
-    const currentIndex = getCurrentTabIndex();
-    if(currentIndex < tabIds.length - 1){
-        switchTab(tabIds[currentIndex + 1]);
-    }
-}
-
-function prevTab(){
-    const currentIndex = getCurrentTabIndex();
-    if(currentIndex > 0){
-        switchTab(tabIds[currentIndex - 1]);
-    }
-}
-
-function getCurrentTabIndex(){
-    return tabIds.findIndex(id => document.getElementById(id).classList.contains('active-content'));
-}
-
-function switchTab(tabId){
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-content'));
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('active-tab');
-        if(btn.getAttribute('onclick').includes(tabId)){
-            btn.classList.add('active-tab');
-        }
-    });
-    document.getElementById(tabId).classList.add('active-content');
-}
-
-function renderExperienceForms(){
-    const count = Number(document.getElementById('organizationCount').value);
-    const container = document.getElementById('experienceForms');
-    container.innerHTML = '';
-
-    for(let i = 1; i <= count; i++){
-        const card = document.createElement('div');
-        card.className = 'experience-card';
-        card.innerHTML = `
-            <h3>Organization ${i}</h3>
-            <div class="experience-grid">
-                <div class="form-group">
-                    <label>Organization Name</label>
-                    <% = Application.organisation${i}%>
-                </div>
-                <div class="form-group">
-                    <label>Designation</label>
-                    <% = Application.organisation${i}%>
-                </div>
-                <div class="form-group">
-                    <label>Total Experience</label>
-                   <%= Application.totalexperience ${i}%>
-                </div>
-                <div class="form-group">
-                    <label>Employment Type</label>
-                    <%= Application.emptype%
-                </div>
-                <div class="form-group">
-                    <label>Current / Last Salary</label>
-                    <%= Application.salary${i}%>
-                </div>
-                <div class="form-group full-width">
-                    <label>Roles & Responsibilities</label>
-                    <%=Application.responsibilities${i}%>
-                
-                </div>
-            </div>
-        `;
-        container.appendChild(card);
-    }
-}
 </script>
+
 </body>
 </html>
